@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h2 class="modal-title" id="newFrameLabel"><span
+            ng-i18next>DRAW.NEW_FRAME</span>
+    </h2>
+</div>
+
+<div class="modal-body">
+    <div><input type="text" id="name" ng-model="frameName" /></div>
+    <div><input type="checkbox" id="copyItems" ng-model="clone" /><div
+            ng-i18next="DRAW.COPY_ITEMS"/>{{clone}}</div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="ok()" ng-i18next>MAIN.OK</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()" ng-i18next>MAIN.CANCEL</button>
+</div>

@@ -1,0 +1,17 @@
+{
+    "settings": {
+        "rest": {
+            "base": {
+                "laser": "http://localhost:7070/laser/rest"
+            },
+            "templ": {
+                "login": "$t(settings.rest.base.laser)/login",
+
+                "animation": "$t(settings.rest.base.laser)/animation",
+                "animationUpload": "$t(settings.rest.templ.animation)/upload",
+                "animationSave": "$t(settings.rest.templ.animation)/save",
+                "animationList": "$t(settings.rest.templ.animation)/list"
+            }
+        }
+    }
+}

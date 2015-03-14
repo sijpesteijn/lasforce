@@ -1,0 +1,14 @@
+<div id="player-controls" class="btn-toolbar" role="toolbar">
+    <button class="fa fa-fast-backward clickable" ng-click="firstFrame();"></button>
+    <button class="fa fa-backward clickable" ng-click="previousFrame();"></button>
+    <button class="fa fa-play clickable" ng-click="playAnimation();" ng-hide="playing"></button>
+    <button class="fa fa-pause clickable" ng-click="stopAnimation();" ng-show="playing"></button>
+    <button class="fa fa-forward clickable" ng-click="nextFrame();"></button>
+    <button class="fa fa-fast-forward clickable" ng-click="lastFrame();"></button>
+    <input id="playerSpeed" data-slider-id='ex1Slider' type="text" data-slider-min="10"
+           data-slider-max="1000"
+           data-slider-step="10" data-slider-value="300"/>
+    <input id="playerZoom" data-slider-id='ex1Slider' type="text" data-slider-min="0.1"
+           data-slider-max="10"
+           data-slider-step="0.01" data-slider-value="1"/>
+</div>

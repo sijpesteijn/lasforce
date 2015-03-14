@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="close()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" ng-i18next="ERROR.EXCEPTION"></h4>
+</div>
+<div class="modal-body">
+    <p>One fine body&hellip;</p>
+    <div class="alert alert-danger" role="alert">{{exception.message}}</div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+</div>

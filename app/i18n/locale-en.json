@@ -1,0 +1,42 @@
+{
+    "MAIN" :
+    {
+        "OK" : "Ok",
+        "SAVE" : "Save",
+        "CANCEL" : "Cancel",
+        "CLOSE" : "Close"
+    },
+
+    "SETTINGS": {
+        "TITLE" : "Settings",
+        "COMPANY_NAME": "Companyname"
+    },
+
+    "UPLOAD_ILDA": {
+        "TITLE" : "ILDA file upload",
+        "FILE_NAME": "Select an ilda file",
+        "UPLOAD" : "Send"
+    },
+
+    "ANIMATION" : {
+        "NAME" : "Name",
+        "FRAME_NAME" : "New name",
+        "LOADING_LIST" : "Loading animation list....",
+        "EMPTY_LIST" : "No animations."
+    },
+
+    "DRAW" : {
+        "RECTANGLE" : "Rectangle",
+        "CIRCLE" : "Circle",
+        "PENCIL" : "Pencil",
+        "SELECT" : "Select",
+        "PATH" : "Free hand",
+        "LINE" : "Line",
+        "TEXT" : "Text",
+        "SAVE" : "Save",
+        "NEW_FRAME" : "New frame",
+        "NAME" : "New name",
+        "NEW_FRAME" : "New frame",
+        "COPY_ITEMS" : "Clone shapes"
+    }
+}

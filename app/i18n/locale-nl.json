@@ -1,0 +1,46 @@
+{
+    "MAIN" :
+    {
+        "OK" : "Ok",
+        "SAVE" : "Opslaan",
+        "CANCEL" : "Annuleren",
+        "CLOSE" : "Afsluiten"
+    },
+
+    "ERROR" :
+    {
+        "EXCEPTION" : "Error occured - "
+    },
+
+    "SETTINGS": {
+        "TITLE" : "Instellingen",
+        "COMPANY_NAME": "Bedrijfsnaam"
+    },
+
+    "UPLOAD_ILDA": {
+        "TITLE" : "ILDA file upload",
+        "FILE_NAME": "Selecteer een ilda file",
+        "UPLOAD": "Verstuur"
+    },
+
+    "ANIMATION" : {
+        "NAME" : "Name",
+        "FRAME_NAME" : "New name",
+        "LOADING_LIST": "Laden animation lijst....",
+        "EMPTY_LIST" : "Geen animaties."
+    },
+
+    "DRAW" : {
+        "RECTANGLE" : "Vierkant",
+        "CIRCLE" : "Cirkel",
+        "PENCIL" : "Potlood",
+        "SELECT" : "Selecteer",
+        "PATH" : "Vrije hand",
+        "LINE" : "Lijn",
+        "TEXT" : "Tekst",
+        "SAVE" : "Opslaan",
+        "NEW_FRAME" : "Nieuw frame",
+        "NEW_NAME" : "Nieuwe naam",
+        "COPY_ITEMS" : "Copier vormen"
+    }
+}

@@ -1,0 +1,20 @@
+<div class="col-lg-12" ng-controller="animationCtrl">
+    <div class="col-xs-4" id="animation-list">
+        <div ng-hide="animations.length == 0" ng-i18next="ANIMATION.LOADING_LIST"></div>
+        <div ng-show="animations.length == 0" ng-i18next="ANIMATION.EMPTY_LIST"></div>
+        <ul>
+            <li class="clickable" ng-repeat="animation in animations"
+                ng-click="loadAnimation(animation)">{{animation}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-4" id="canvasAnimationView">
+        <div class="canvasAnimation">
+            <canvas id="CanvasAnimation"></canvas>
+        </div>
+        <player canvas-id="CanvasAnimation"></player>
+    </div>
+    <div class="col-xs-4">
+        <framelist name="name" frames="frames"/>
+    </div>
+</div>

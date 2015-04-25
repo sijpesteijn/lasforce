@@ -1,0 +1,19 @@
+<ul class="nav nav-pills pull-right">
+  <li ng-class="{'active' : view == 'shows'}">
+    <a class="navbar-brand" href="#shows" ng-i18next>NAV.SHOWS</a>
+  </li>
+  <li ng-class="{'active' : view == 'animations'}">
+    <a class="navbar-brand" href="#animations" ng-i18next>NAV.ANIMATIONS</a>
+  </li>
+  <li ng-class="{'active' : view == 'sequences'}">
+    <a class="navbar-brand" href="#sequences" ng-i18next>NAV.SEQUENCES</a>
+  </li>
+  <li>
+    <a class="navbar-brand" href="#" ng-click="uploadIlda();">Upload ILDA file</a>
+  </li>
+  <li>
+    <div class="navbar-brand" style="padding-top: 5px;">
+      <i class="fa fa-cog fa-2x clickable" ng-click="settings();"></i>
+    </div>
+  </li>
+</ul>

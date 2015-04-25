@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('colorpickerCtrl', function ($scope, $rootScope) {
 
   $('.color-box').colpick({
@@ -17,7 +19,7 @@ app.controller('colorpickerCtrl', function ($scope, $rootScope) {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: './views/colorpicker.html',
+      templateUrl: '/directives/colorPicker/colorpicker.html',
       controller: 'colorpickerCtrl',
       scope: {
       }

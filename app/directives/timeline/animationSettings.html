@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h2 class="modal-title" id="myModalLabel">
+    <i class="fa fa-cog"></i>
+    <span ng-i18next>NAVIGATION.PERIODS.SELECTION</span>
+  </h2>
+</div>
+<div class="modal-body">
+  <form name="form" class="form-horizontal settingsTabSet" role="form" novalidate>
+    <div class="form-group">
+      <label class="col-md-3 control-label" ng-i18next>SETTINGSDOSSIER.FORM.STARTDATE</label>
+      <div class="col-md-9">
+        <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+          <div class="input-group">
+            <input type="text" class="form-control input-large" ng-model="data.startDateFormatted" required>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+          <span ng-show="form.startDate.$error.date">The value is not a valid date!</span>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <datetimepicker data-ng-model="data.startDate" on-set-time="onSetStartTime(newDate, oldDate)"
+                          data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'hour' }"></datetimepicker>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3 control-label" ng-i18next>SETTINGSDOSSIER.FORM.ENDDATE</label>
+      <div class="col-md-9">
+        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+          <div class="input-group">
+            <input type="text" class="form-control input-large" ng-model="data.endDateFormatted" required>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <datetimepicker data-ng-model="data.endDate" on-set-time="onSetEndTime(newDate, oldDate)"
+                          data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minView: 'hour' }"></datetimepicker>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group label-danger invalid-dates" ng-show="validDates() == false" ng-i18next>ERROR.ENDDATE_BEFORE_STARTDATE</div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="cancel()" ng-i18next>BUTTON.CANCEL</button>
+  <button type="button" class="save btn btn-success" ng-click="ok()" ng-disabled="validDates() == false" ><i
+    class="fa fa-save"></i><span ng-i18next>BUTTON.ADD</span></button>
+</div>

@@ -71,7 +71,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-//    max-width: 730px;
+    //    max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
@@ -107,7 +107,6 @@ body {
 .selectedTool {
   color: red;
 }
-
 
 #CanvasDraw {
   width: 656px;
@@ -156,10 +155,10 @@ body {
 }
 
 .color-box {
-  float:left;
-  width:20px;
-  height:20px;
-  margin:5px;
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
   border: 1px solid black;
 }
 
@@ -170,3 +169,173 @@ body {
 .draw-tools-row {
 
 }
+
+// NEW
+.selected {
+  color: #ff4af4;
+}
+
+.show-list {
+
+  .tile-add {
+    background-color: #0000FF;
+    text-align: center;
+  }
+
+  .tile {
+    background-color: red;
+    text-align: center;
+    color: #FFFFFF;
+  }
+}
+
+.animationCanvas {
+  width: 300px;
+  height: 300px;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    border: 2px solid dodgerblue;
+    background-color: black;
+  }
+}
+
+.sequence-view {
+  background: red;
+  cursor: e-resize;
+}
+
+.sequence-view:before {
+  left: -8px;
+  border-left: 8px solid black;
+  cursor: move;
+}
+
+.timeline {
+  height: 22px;
+  border: 1px solid black;
+  width: 400px;
+}
+
+.timeline-hover {
+  background: wheat;
+}
+
+.timeline-element {
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+  background: lightblue;
+  float: left;
+
+  .selected-element {
+    background: lightgrey;
+    border: 1px solid #000000;
+  }
+}
+
+.timeline-element:hover {
+  border: 1px solid #000000;
+  cursor: move;
+
+  .egrip, .wgrip {
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+  }
+
+  .wgrip{
+    left:-7px;
+    top:25%;
+  }
+  .egrip{
+    right:-7px;
+    top:25%;
+  }
+
+}
+
+//.egrip, .wgrip {
+//  width: 10px;
+//  height: 10px;
+//  background-color: #ffffff;
+//  border: 1px solid #000000;
+//}
+//
+//.wgrip{
+//  left:-5px;
+//  top:50%;
+//}
+//.egrip{
+//  right:-5px;
+//  top:50%;
+//}
+//.panel-group {
+//  width:430px;
+//  z-index: 100;
+//  -webkit-backface-visibility: hidden;
+//  -webkit-transform: translateX(-100%) rotate(-90deg);
+//  -webkit-transform-origin: right top;
+//  -moz-transform: translateX(-100%) rotate(-90deg);
+//  -moz-transform-origin: right top;
+//  -o-transform: translateX(-100%) rotate(-90deg);
+//  -o-transform-origin: right top;
+//  transform: translateX(-100%) rotate(-90deg);
+//  transform-origin: right top;
+//}
+//.panel-heading {
+//  width: 430px;
+//}
+//.panel-title {
+//  height:18px
+//}
+//.panel-title a {
+//  float:right;
+//  text-decoration:none;
+//  padding: 10px 430px;
+//  margin: -10px -430px;
+//}
+//
+//.panel-group span {
+//  -webkit-backface-visibility: hidden;
+//  -webkit-transform: translateX(-100%) rotate(90deg);
+//  -webkit-transform-origin: right top;
+//  -moz-transform: translateX(-100%) rotate(90deg);
+//  -moz-transform-origin: right top;
+//  -o-transform: translateX(-100%) rotate(90deg);
+//  -o-transform-origin: right top;
+//  transform: translateX(-100%) rotate(90deg);
+//  transform-origin: right top;
+//}
+//.panel-group .panel span {
+//  margin-left:400px;
+//  position: absolute;
+//}
+//
+//.show-list {
+//
+//  span {
+//    margin-top: 150px;
+//    width: 150px;
+//  }
+//
+//  .panel-body {
+//    height: 180px;
+//  }
+//}
+//
+//.show-view {
+//
+//  span {
+//    margin-top: 150px;
+//    width: 150px;
+//  }
+//
+//  .panel-body {
+//    height:180px;
+//  }
+//}
+

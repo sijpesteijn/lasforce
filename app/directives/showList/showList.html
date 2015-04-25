@@ -1,0 +1,16 @@
+<div>
+  <div gridster="showListGrid">
+    <ul class="show-list">
+      <li gridster-item size-x="2" size-y="2">
+        <span class="tile-add">
+          <span ng-hide="openAddShow"><button ng-click="openAddShow = true"><i class="fa fa-plus"></i></button></span>
+          <span ng-show="openAddShow"><input type="text" ng-model="newShow" ng-keyup="$event.keyCode == 13 && createShow()"></span>
+        </span>
+      </li>
+      <li gridster-item="tile" class="tile clickable" ng-click="setShow(tile.show)"
+          ng-repeat="tile in tiles | orderBy:'-show.id'">
+        <span class="tile" ng-class="{'selected': selectedShow.id == tile.show.id}">{{tile.show.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

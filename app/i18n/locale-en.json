@@ -7,6 +7,12 @@
         "CLOSE" : "Close"
     },
 
+    "NAV": {
+      "SHOWS" : "Shows",
+      "ANIMATIONS": "Animations",
+      "SEQUENCES": "Sequences"
+    },
+
     "SETTINGS": {
         "TITLE" : "Settings",
         "COMPANY_NAME": "Companyname"

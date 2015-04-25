@@ -33,24 +33,5 @@ app.controller('globalCtrl', function ($scope, $modal) {
         });
     }
 
-    var uploadIldaCtrl = function($scope, $modalInstance) {
-
-        $scope.upload = function() {
-            $modalInstance.close();
-        }
-
-        $scope.close = function() {
-            $modalInstance.close();
-        }
-    };
-
-    $scope.uploadIlda = function() {
-        console.log('Upload ilda selected');
-        $modal.open({
-            templateUrl: "./views/uploadIlda.html",
-            controller: "uploadIldaCtrl"
-        });
-    }
-
 
 });

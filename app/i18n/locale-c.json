@@ -7,7 +7,15 @@
             "templ": {
                 "login": "$t(settings.rest.base.laser)/login",
 
-                "animation": "$t(settings.rest.base.laser)/animation",
+                "animation-list": "$t(settings.rest.base.laser)/animations/:id",
+                "animation-update": "$t(settings.rest.base.laser)/animations/:animation",
+                "sequence-list": "$t(settings.rest.base.laser)/sequences/:id",
+                "sequence-update": "$t(settings.rest.base.laser)/sequences/:sequence",
+                "animation-load-ilda": "$t(settings.rest.base.laser)/animations/:id/data",
+                "show-list": "$t(settings.rest.base.laser)/shows/:id",
+                "show-update": "$t(settings.rest.base.laser)/shows/:show",
+
+                "animation": "$t(settings.rest.base.laser)/animations",
                 "animationUpload": "$t(settings.rest.templ.animation)/upload",
                 "animationSave": "$t(settings.rest.templ.animation)/save",
                 "animationList": "$t(settings.rest.templ.animation)/list"

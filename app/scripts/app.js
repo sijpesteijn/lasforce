@@ -16,24 +16,31 @@ var app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'gridster',
     'jm.i18next',
     'ui.bootstrap',
     'angularFileUpload'
-  ]);
-//  .config(function ($routeProvider) {
-//    $routeProvider
-//      .when('/', {
-//        templateUrl: 'views/main.html',
-//        controller: 'MainCtrl'
-//      })
-//      .when('/about', {
-//        templateUrl: 'views/about.html',
-//        controller: 'AboutCtrl'
-//      })
-//      .otherwise({
-//        redirectTo: '/'
-//      });
-//  });
+  ])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when('/animations', {
+        templateUrl: 'views/animation_view/animation_view.html'
+      })
+      .when('/sequences', {
+        templateUrl: 'views/sequence_view/sequence_view.html'
+      })
+      .when('/shows', {
+        templateUrl: 'views/show_view/show_view.html',
+        controller: 'showViewCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  });
 
 app.config(function ($i18nextProvider) {
     $i18nextProvider.options = {

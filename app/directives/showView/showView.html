@@ -1,0 +1,19 @@
+<div>
+  <div>{{ selectedShow.name }}</div>
+  <div gridster="showViewGrid">
+    <ul class="show-view">
+      <li gridster-item size-x="2" size-y="2">
+        <span class="tile-add">
+          <span ng-hide="openAddSequence"><button ng-click="openAddSequence = true"><i class="fa fa-plus"></i></button></span>
+          <span ng-show="openAddSequence"><input type="text" ng-model="newSequence" ng-keyup="$event.keyCode == 13 && createSequence()"></span>
+        </span>
+      </li>
+      <li gridster-item="sequence" class="tile clickable" ng-click="setSequence(sequence)"
+          ng-repeat="sequence in sequences | orderBy:'-id'">
+        <span class="tile" ng-class="{'selected': selectedSequence.id == sequence.id}">{{sequence.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

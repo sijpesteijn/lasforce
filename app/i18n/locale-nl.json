@@ -7,6 +7,12 @@
         "CLOSE" : "Afsluiten"
     },
 
+    "NAV": {
+      "SHOWS" : "Shows",
+      "ANIMATIONS": "Animaties",
+      "SEQUENCES": "Sequences"
+    },
+
     "ERROR" :
     {
         "EXCEPTION" : "Error occured - "

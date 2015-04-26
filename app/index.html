@@ -32,8 +32,18 @@
         <info></info>
         <navigation></navigation>
         <h3 class="text-muted">LasForce</h3>
-        <time-line></time-line>
-        <animation-list data-draggable="true" data-snap-to="'.timeline'"></animation-list>
+        <div class="col-md-12">
+          <div class="col-md-9">
+            <time-line></time-line>
+          </div>
+          <div class="col-md-3">
+            <animation-list data-draggable="true" data-snap-to="'.timeline'"></animation-list>
+          </div>
+        </div>
+        <div class="col-md-12" ng-show="timelineSelectedElement">
+          <animation-view animation="timelineSelectedElement.animation"></animation-view>
+        </div>
+        <timeline-element-info></timeline-element-info>
         <!--<div ng-view></div>-->
         <!--<div claas="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
           <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">-->

@@ -29,11 +29,14 @@
         "UPLOAD": "Verstuur"
     },
 
-    "ANIMATION" : {
+    "TIMELINE_ELEMENT" : {
         "NAME" : "Name",
         "FRAME_NAME" : "New name",
         "LOADING_LIST": "Laden animation lijst....",
-        "EMPTY_LIST" : "Geen animaties."
+        "EMPTY_LIST" : "Geen animaties.",
+        "SETTINGS" : {
+          "TITLE": "Animatie settings"
+        }
     },
 
     "DRAW" : {

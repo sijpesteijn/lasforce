@@ -24,11 +24,16 @@
         "UPLOAD" : "Send"
     },
 
-    "ANIMATION" : {
+    "TIMELINE_ELEMENT" : {
         "NAME" : "Name",
         "FRAME_NAME" : "New name",
         "LOADING_LIST" : "Loading animation list....",
-        "EMPTY_LIST" : "No animations."
+        "EMPTY_LIST" : "No animations.",
+        "SETTINGS" : {
+          "TITLE": "Animation settings",
+          "FRAMERATE": "Framerate",
+          "LOOP": "Loop"
+        }
     },
 
     "DRAW" : {

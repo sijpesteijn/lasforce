@@ -213,9 +213,23 @@ body {
 }
 
 .timeline {
-  height: 22px;
+  height: 80px;
   border: 1px solid black;
-  width: 400px;
+  width: 600px;
+  overflow-y: auto;
+
+  .time-scale {
+    //border: 1px solid black;
+    background: #FFFFFF;
+    width: 100%;
+    height: 20px;
+    margin-top: 21px;
+
+      line {
+        color: #B5ACBA;
+        stroke-width:2;
+      }
+  }
 }
 
 .timeline-hover {
@@ -257,85 +271,3 @@ body {
   }
 
 }
-
-//.egrip, .wgrip {
-//  width: 10px;
-//  height: 10px;
-//  background-color: #ffffff;
-//  border: 1px solid #000000;
-//}
-//
-//.wgrip{
-//  left:-5px;
-//  top:50%;
-//}
-//.egrip{
-//  right:-5px;
-//  top:50%;
-//}
-//.panel-group {
-//  width:430px;
-//  z-index: 100;
-//  -webkit-backface-visibility: hidden;
-//  -webkit-transform: translateX(-100%) rotate(-90deg);
-//  -webkit-transform-origin: right top;
-//  -moz-transform: translateX(-100%) rotate(-90deg);
-//  -moz-transform-origin: right top;
-//  -o-transform: translateX(-100%) rotate(-90deg);
-//  -o-transform-origin: right top;
-//  transform: translateX(-100%) rotate(-90deg);
-//  transform-origin: right top;
-//}
-//.panel-heading {
-//  width: 430px;
-//}
-//.panel-title {
-//  height:18px
-//}
-//.panel-title a {
-//  float:right;
-//  text-decoration:none;
-//  padding: 10px 430px;
-//  margin: -10px -430px;
-//}
-//
-//.panel-group span {
-//  -webkit-backface-visibility: hidden;
-//  -webkit-transform: translateX(-100%) rotate(90deg);
-//  -webkit-transform-origin: right top;
-//  -moz-transform: translateX(-100%) rotate(90deg);
-//  -moz-transform-origin: right top;
-//  -o-transform: translateX(-100%) rotate(90deg);
-//  -o-transform-origin: right top;
-//  transform: translateX(-100%) rotate(90deg);
-//  transform-origin: right top;
-//}
-//.panel-group .panel span {
-//  margin-left:400px;
-//  position: absolute;
-//}
-//
-//.show-list {
-//
-//  span {
-//    margin-top: 150px;
-//    width: 150px;
-//  }
-//
-//  .panel-body {
-//    height: 180px;
-//  }
-//}
-//
-//.show-view {
-//
-//  span {
-//    margin-top: 150px;
-//    width: 150px;
-//  }
-//
-//  .panel-body {
-//    height:180px;
-//  }
-//}
-

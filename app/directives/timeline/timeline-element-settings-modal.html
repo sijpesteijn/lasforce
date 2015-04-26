@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h2 class="modal-title" id="myModalLabel">
+    <i class="fa fa-cog"></i>
+    <span ng-i18next>TIMELINE_ELEMENT.SETTINGS.TITLE</span>
+  </h2>
+</div>
+<div class="modal-body">
+  <div class="col-md-3">
+    <timeline-element-settings settings="timelineElement.settings"></timeline-element-settings>
+  </div>
+  <div class="col-md-9">
+    <animation-view animation="timelineElement.animation"></animation-view>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="cancel()" ng-i18next>MAIN.CANCEL</button>
+  <button type="button" class="save btn btn-success" ng-click="save()"><i
+    class="fa fa-save"></i> <span ng-i18next>MAIN.OK</span></button>
+</div>

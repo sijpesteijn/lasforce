@@ -6,6 +6,10 @@ app.controller('animationViewCtrl', function($scope, $http, $resource, settings)
   function init() {
     var canvas = $('#animationCanvas')
     viewWindow = new paper.Rectangle(2,2,canvas.width()-4,canvas.height()-4);
+    paper.install(window);
+    paper.setup('animationCanvas');
+    if ($scope.animation)
+      loadAnimation($scope.animation);
   }
 
   function createPaperElement(element) {
@@ -44,9 +48,7 @@ app.controller('animationViewCtrl', function($scope, $http, $resource, settings)
     }
   }
 
-  $scope.loadAnimation = function(animation) {
-    paper.install(window);
-    paper.setup('animationCanvas');
+   function loadAnimation(animation) {
     $resource(settings.get('rest.templ.animation-load-ilda')).get(
       {id: animation.id},
       function(data) {
@@ -72,7 +74,7 @@ app.controller('animationViewCtrl', function($scope, $http, $resource, settings)
       });
   };
 
-  $scope.$watch('selectedAnimation', function(selectedAnimation) {
+  $scope.$watch('animation', function(selectedAnimation) {
     if (angular.isDefined(selectedAnimation)) {
       console.log('animationViewCtrl: animation selected: ' + selectedAnimation.name);
       $scope.loadAnimation(selectedAnimation);
@@ -87,6 +89,9 @@ app.directive('animationView', function() {
     templateUrl: '/directives/animation-view/animation-view.html',
     restrict: 'E',
     replace: true,
-    controller: 'animationViewCtrl'
+    controller: 'animationViewCtrl',
+    scope: {
+      animation: '='
+    }
   }
 });

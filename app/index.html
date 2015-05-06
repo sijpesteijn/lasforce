@@ -1,138 +1,140 @@
 <!doctype html>
 <html class="no-js" ng-app="lasforceApp" xmlns:ng="http://angularjs.org">
-  <head>
-    <meta charset="utf-8">
-    <title>LasForce</title>
-    <meta name="description" content="Laser animation software">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+<head>
+  <meta charset="utf-8">
+  <title>LasForce</title>
+  <meta name="description" content="Laser animation software">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="bower_components/colpick/css/colpick.css">
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
-    <!-- endbuild -->
-  </head>
-  <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="bower_components/colpick/css/colpick.css">
+  <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
+  <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <info></info>
-        <navigation></navigation>
-        <h3 class="text-muted">LasForce</h3>
-        <div class="col-md-12">
-          <div class="col-md-9">
-            <time-line></time-line>
-          </div>
-          <div class="col-md-3">
-            <animation-list data-draggable="true" data-snap-to="'.timeline'"></animation-list>
-          </div>
-        </div>
-        <div class="col-md-12" ng-show="timelineSelectedElement">
-          <animation-view animation="timelineSelectedElement.animation"></animation-view>
-        </div>
-        <timeline-element-info></timeline-element-info>
-        <!--<div ng-view></div>-->
-        <!--<div claas="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-          <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">-->
-            <!--<animation-list></animation-list>-->
-          <!--</div>-->
-          <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">-->
-            <!--<animation-view></animation-view>-->
-          <!--</div>-->
-        <!--</div>  -->
+<!-- Add your site or application content here -->
+<div class="container">
+  <div class="header">
+    <info></info>
+    <navigation></navigation>
+    <h3 class="text-muted">LasForce</h3>
+
+    <div class="col-md-12">
+      <div class="col-md-9">
+        <animation-list data-draggable="true" data-snap-to="'.timeline'"></animation-list>
       </div>
-
-      <!--<div class="footer">-->
-        <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
-      <!--</div>-->
+      <div class="col-md-3">
+        <!--<animation-view animation="timelineSelectedElement.animation"></animation-view>-->
+      </div>
     </div>
+    <div class="col-md-12">
+      <time-line></time-line>
+    </div>
+    <timeline-element-info></timeline-element-info>
+    <!--<div ng-view></div>-->
+    <!--<div claas="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+    <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">-->
+    <!--<animation-list></animation-list>-->
+    <!--</div>-->
+    <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">-->
+    <!--<animation-view></animation-view>-->
+    <!--</div>-->
+    <!--</div>  -->
+  </div>
 
-    <!-- build:js(.) scripts/oldieshim.js -->
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <![endif]-->
-    <!-- endbuild -->
+  <!--<div class="footer">-->
+  <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
+  <!--</div>-->
+</div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/i18next/i18next.js"></script>
-    <script src="bower_components/ng-i18next/dist/ng-i18next.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
-    <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
-    <script src="bower_components/paper/dist/paper-full.js"></script>
-    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
-    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
-    <script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/modernizr/modernizr.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/i18next/i18next.js"></script>
+<script src="bower_components/ng-i18next/dist/ng-i18next.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+<script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
+<script src="bower_components/paper/dist/paper-full.js"></script>
+<script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
+<script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <script src="objects/Settings.js"></script>
-    <script src="scripts/directives/frameList.js"></script>
-    <script src="scripts/directives/player.js"></script>
-    <script src="scripts/error.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
 
-    <!-- Modals -->
-    <script src="modals/uploadIlda/uploadIlda.js"></script>
+<script src="objects/Settings.js"></script>
+<script src="scripts/directives/frameList.js"></script>
+<script src="scripts/directives/player.js"></script>
+<script src="scripts/error.js"></script>
 
-    <!-- Views -->
-    <script src="views/animation_view/animation_view.js"></script>
-    <script src="views/sequence_view/sequence_view.js"></script>
-    <script src="views/show_view/show_view.js"></script>
+<!-- Modals -->
+<script src="modals/uploadIlda/uploadIlda.js"></script>
 
-    <!-- Directives -->
-    <!--<script src="directives/animationList/animation.js"></script>-->
-    <script src="directives/animation-list/animation-list.js"></script>
-    <script src="directives/animation-view/animation-view.js"></script>
-    <script src="directives/sequence-list/sequence-list.js"></script>
-    <script src="directives/sequence-view/sequence-view.js"></script>
-    <script src="directives/timeline/timeline.js"></script>
-    <script src="directives/colorPicker/colorpicker.js"></script>
-    <script src="directives/info/info.js"></script>
-    <script src="directives/navigation/navigation.js"></script>
-    <script src="directives/showList/showList.js"></script>
-    <script src="directives/showView/showView.js"></script>
-        <!-- endbuild -->
+<!-- Views -->
+<script src="views/animation_view/animation_view.js"></script>
+<script src="views/sequence_view/sequence_view.js"></script>
+<script src="views/show_view/show_view.js"></script>
+
+<!-- Directives -->
+<!--<script src="directives/animationList/animation.js"></script>-->
+<script src="directives/animation-list/animation-list.js"></script>
+<script src="directives/animation-view/animation-view.js"></script>
+<script src="directives/sequence-list/sequence-list.js"></script>
+<script src="directives/sequence-view/sequence-view.js"></script>
+<script src="directives/timeline/timeline.js"></script>
+<script src="directives/colorPicker/colorpicker.js"></script>
+<script src="directives/info/info.js"></script>
+<script src="directives/navigation/navigation.js"></script>
+<script src="directives/showList/showList.js"></script>
+<script src="directives/showView/showView.js"></script>
+<!-- endbuild -->
 </body>
 </html>

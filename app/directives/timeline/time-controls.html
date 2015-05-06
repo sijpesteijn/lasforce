@@ -1,0 +1,9 @@
+<span>
+  <button ng-click="rewind()" ng-disable="walker == 0"><i class="fa fa-step-backward"></i></button>
+  <button ng-click="togglePlay()" ng-keyup="$event.keyCode == 32 && togglePlay()"><i class="fa fa-play" ng-show="!playing"></i><i class="fa fa-pause" ng-show="playing"></i> </button>
+  <button ng-click="zoomOut()" ng-disabled="zoom == 0.1">-</button>
+  <button ng-click="zoomIn()">+</button>
+  <span>{{zoomProcentage}}%</span>
+  <span>{{totalTime}}</span>
+  <span>{{elapsed}}</span>
+</span>

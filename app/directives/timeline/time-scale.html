@@ -1,12 +1,12 @@
 <div>
-  <svg class="time-scale" ng-dblclick="zoom = 1" ng-click="setWalker($event)">
-    <line x1="{{walker}}" y1="0" x2="{{walker}}" y2="20" style="stroke: red;stroke-width: 2"></line>
-    <line x1="0" y1="0" x2="100%" y2="0" style="stroke:{{timelineColor}};stroke-width:2"></line>
+  <span ng-show="totalSeconds == 0" ng-i18next>SEQUENCE.DROP</span>
+  <svg id="time-scale" xmlns="http://www.w3.org/2000/svg" version="1.1" class="time-scale" ng-dblclick="zoom = 1" ng-click="setWalker($event)" ng-show="totalSeconds > 0">
+    <!-- time line base -->
+    <line ng-attr-x1="{{paddingLeft + 0}}" y1="20" ng-attr-x2="{{paddingLeft + (totalSeconds*100*zoom)}}" y2="20" style="stroke:{{timelineColor}};stroke-width:1"></line>
+    <!-- time index -->
+    <line ng-attr-x1="{{walker}}" y1="0" ng-attr-x2="{{walker}}" y2="30" style="stroke: red;stroke-width: 1" ng-show="totalSeconds > 0"></line>
+
     <time-scale-second ng-repeat="n in [] | range:totalSeconds"></time-scale-second>
+    <!--<line x1="{{paddingLeft + 0}}" y1="20" x2="{{100*zoom}}" y2="20" style="stroke: red;stroke-width: 2"></line>-->
   </svg>
-  <button ng-click="rewind()" ng-disable="walker == 0"><i class="fa fa-step-backward"></i></button>
-  <button ng-click="togglePlay()"><i class="fa fa-play" ng-show="!playing"></i><i class="fa fa-pause" ng-show="playing"></i> </button>
-  <button ng-click="zoomOut()" ng-disabled="zoom == 0.1">-</button>
-  <button ng-click="zoomIn()">+</button>
-  <span>{{zoomProcentage}}%</span>
 </div>

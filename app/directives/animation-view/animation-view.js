@@ -77,7 +77,7 @@ app.controller('animationViewCtrl', function($scope, $http, $resource, settings)
   $scope.$watch('animation', function(selectedAnimation) {
     if (angular.isDefined(selectedAnimation)) {
       console.log('animationViewCtrl: animation selected: ' + selectedAnimation.name);
-      $scope.loadAnimation(selectedAnimation);
+      loadAnimation(selectedAnimation);
     }
   });
 

@@ -1,6 +1,11 @@
-<svg>
-  <line x1="{{getSecondsMarkerX()}}" y1="0" x2="{{getSecondsMarkerX()}}" y2="10" style="stroke:{{timelineColor}};stroke-width:1"></line>
-  <text x="{{getSecondsX()}}" y="16" fill="{{timelineColor}}" style="font-size: 0.5em;">{{$index}}</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
 
-  <line ng-repeat="n in [] | range:fill" x1="{{getHundredsMarkerX($index)}}" y1="0" x2="{{getHundredsMarkerX($index)}}" y2="8" style="stroke:{{timelineColor}};stroke-width:1"></line>
+  <line ng-repeat="n in [] | range:fill" ng-attr-x1="{{getHundredsMarkerX($index)}}" y1="20" ng-attr-x2="{{getHundredsMarkerX($index)}}" y2="28" style="stroke:{{timelineColor}};stroke-width:1"></line>
+
+  <line ng-attr-x1="{{start}}" y1="20" ng-attr-x2="{{start}}" y2="30" style="stroke:{{timelineColor}};stroke-width:1"></line>
+  <text ng-attr-x="{{getSecondsX()}}" y="38" fill="{{timelineColor}}" style="font-size: 0.6em;">{{$index}}</text>
+
+  <line ng-show="$last" ng-attr-x1="{{paddingLeft + (($index+1)*100*zoom)}}" y1="20" ng-attr-x2="{{paddingLeft + (($index+1)*100*zoom)}}" y2="30" style="stroke:{{timelineColor}};stroke-width:1"></line>
+  <text ng-show="$last" ng-attr-x="{{paddingLeft + getLastSecondsX()}}" y="38" ng-attr-fill="{{timelineColor}}" style="font-size: 0.6em;">{{$index+1}}</text>
+
 </svg>

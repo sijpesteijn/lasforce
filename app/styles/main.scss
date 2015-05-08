@@ -26,7 +26,6 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
@@ -190,8 +189,8 @@ body {
 }
 
 .animationCanvas {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
 
   canvas {
     width: 100%;
@@ -212,69 +211,12 @@ body {
   cursor: move;
 }
 
-.timeline-view {
-  border: 1px solid black;
+.time-scale {
+  background-color: rosybrown;
+  width: 100%;
+  height: 40px;
 }
 
-.timeline {
-  span {
-    overflow-y: auto;
-  }
-
-  .time-scale {
-    background: #FFFFFF;
-    width: 100%;
-    height: 40px;
-    margin-top: -19px;
-
-      line {
-        color: #B5ACBA;
-        stroke-width:2;
-      }
-  }
-
-  button {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-.timeline-hover {
-  background: wheat;
-}
-
-.timeline-element {
-  margin-left: 5px;
-  height: 20px;
-  text-align: center;
-  overflow: hidden;
-  background: lightblue;
-  float: left;
-
-  .selected-element {
-    background: lightgrey;
-    border: 1px solid #000000;
-  }
-}
-
-.timeline-element:hover {
-  border: 1px solid #000000;
-  cursor: move;
-
-  .egrip, .wgrip {
-    width: 12px;
-    height: 12px;
-    background-color: #ffffff;
-    border: 1px solid #000000;
-  }
-
-  .wgrip{
-    left:-7px;
-    top:25%;
-  }
-  .egrip{
-    right:-7px;
-    top:25%;
-  }
-
+.time-scale-hover {
+  background-color: wheat;
 }

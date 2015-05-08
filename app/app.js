@@ -24,18 +24,13 @@ var app = angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/animations', {
-        templateUrl: 'views/animation_view/animation_view.html'
+        templateUrl: 'pages/animation_page/animation_page.html'
       })
       .when('/sequences', {
-        templateUrl: 'views/sequence_view/sequence_view.html'
+        templateUrl: 'pages/sequence_page/sequence_page.html'
       })
       .when('/shows', {
-        templateUrl: 'views/show_view/show_view.html',
-        controller: 'showViewCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'pages/show_page/show_page.html'
       })
       .otherwise({
         redirectTo: '/'

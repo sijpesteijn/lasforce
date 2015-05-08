@@ -1,6 +1,6 @@
-<div>
-  <span ng-show="totalSeconds == 0" ng-i18next>SEQUENCE.DROP</span>
-  <svg id="time-scale" xmlns="http://www.w3.org/2000/svg" version="1.1" class="time-scale" ng-dblclick="zoom = 1" ng-click="setWalker($event)" ng-show="totalSeconds > 0">
+<div class="time-scale-container">
+  <svg id="time-scale" xmlns="http://www.w3.org/2000/svg" version="1.1" class="time-scale" ng-dblclick="zoom = 1" ng-click="setWalker($event)">
+
     <!-- time line base -->
     <line ng-attr-x1="{{paddingLeft + 0}}" y1="20" ng-attr-x2="{{paddingLeft + (totalSeconds*100*zoom)}}" y2="20" style="stroke:{{timelineColor}};stroke-width:1"></line>
     <!-- time index -->

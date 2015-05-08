@@ -1,7 +1,10 @@
-<div>
-  <!--<div gridster="sequenceListGrid">-->
-    <ul class="sequence-list">
-      <li> <!-- gridster-item size-x="2" size-y="2">-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title" data-ng-i18next>SEQUENCE.LIST.TITLE</h4>
+  </div>
+  <div class="panel-body">
+    <ul class="sequence-list list-unstyled">
+      <li>
         <span class="tile-add">
           <span ng-hide="openAddSequence"><button ng-click="openAddSequence = true"><i class="fa fa-plus"></i></button></span>
           <span ng-show="openAddSequence"><input type="text" ng-model="newSequence" ng-keyup="$event.keyCode == 13 && createSequence()"></span>
@@ -12,5 +15,5 @@
         <span class="tile" ng-class="{'selected': selectedSequence.id == tile.sequence.id}">{{tile.sequence.name}}</span>
       </li>
     </ul>
-  <!--</div>-->
+  </div>
 </div>

@@ -3,6 +3,7 @@
 app.controller('animationListCtrl', function($scope, $resource, settings, uploadIldaFactory) {
 
   $scope.selectAnimation = function(animation) {
+    console.log('Selected animation: ' + animation.name);
     $scope.selectedAnimation = animation;
   };
 
@@ -29,7 +30,7 @@ app.controller('animationListCtrl', function($scope, $resource, settings, upload
 
   $scope.uploadIlda = function() {
     uploadIldaFactory.openUploadFileModal();
-  }
+  };
 
   function init() {
     $resource(settings.get('rest.templ.animation-list')).query(
@@ -52,11 +53,11 @@ app.directive('animationList', function() {
   return {
     templateUrl: '/directives/animation-list/animation-list.html',
     controller: 'animationListCtrl',
-    restrict: 'EA',
+    restrict: 'E',
     replace: true,
     scope: {
-      draggable: '=',
-      snapTo: '='
+      cbMouseOver: '&',
+      cbMouseOut: '&'
     }
   }
 });
@@ -67,9 +68,9 @@ app.directive('animation', function() {
     restrict: 'E',
     replace: true,
     scope: {
-      draggable: '=',
-      snapTo: '=',
-      animation: '='
+      animation: '=',
+      cbMouseOver: '&',
+      cbMouseOut: '&'
     },
     link: function(scope, element) {
 
@@ -95,4 +96,4 @@ app.directive('animation', function() {
       init();
     }
   }
-})
+});

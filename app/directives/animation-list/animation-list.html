@@ -1,16 +1,25 @@
-<div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title" data-ng-i18next>ANIMATION.LIST.TITLE</h4>
+  </div>
+  <div class="panel-body">
     <ul class="animation-list list-unstyled">
       <li>
         <span class="tile-add">
-          <span ng-hide="openAddAnimation"><button ng-click="openAddAnimation = true"><i class="fa fa-plus"></i></button></span>
-          <span ng-show="openAddAnimation"><input type="text" ng-model="newAnimation" ng-keyup="$event.keyCode == 13 && createAnimation()"></span>
+          <span ng-hide="openAddAnimation"><button ng-click="openAddAnimation = true"><i class="fa fa-plus"></i>
+          </button></span>
+          <span ng-show="openAddAnimation"><input type="text" ng-model="newAnimation"
+                                                  ng-keyup="$event.keyCode == 13 && createAnimation()"></span>
         </span>
         <span class="tile-upload">
           <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
         </span>
       </li>
-      <li class="tile clickable" ng-repeat="animation in animations | orderBy:'-name'" ng-click="selectAnimation(animation)">
-        <animation animation="animation" data-draggable="draggable" data-snap-to="snapTo"></animation>
+      <li class="tile clickable" data-ng-repeat="animation in animations | orderBy:'-name'"
+          data-ng-click="selectAnimation(animation)" data-ng-mouseover="cbMouseOver({animationId:animation.id})"
+          data-ng-mouseout="cbMouseOut({animationId:animation.id})">
+        <animation animation="animation"></animation>
       </li>
     </ul>
+  </div>
 </div>

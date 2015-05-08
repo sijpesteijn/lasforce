@@ -36,8 +36,17 @@
         }
     },
 
+  "ANIMATION" : {
+    "LIST": {
+     "TITLE": "Animations"
+    }
+  },
+
   "SEQUENCE" : {
-    "DROP" : "Drop animations here to start a new sequence"
+    "DROP" : "Drop animations here to start a new sequence",
+    "LIST" : {
+      "TITLE" : "Sequences"
+    }
   },
 
     "DRAW" : {

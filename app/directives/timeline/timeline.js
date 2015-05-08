@@ -34,13 +34,20 @@ app.controller('timeLineCtrl', function ($scope, $interval, $timeout) {
   }
 
   function init() {
-    $('.timeline').sortable({
+    //var timescale = $('.time-scale');
+    //timescale.on('mouseover', function(event, i) {
+    //  timescale.addClass('.time-scale-hover');
+    //});
+    //timescale.on('mouseout', function(event, i) {
+    //  timescale.removeClass('.time-scale-hover');
+    //});
+    $('.time-scale-container').sortable({
       //axis: "x",
       revert: true
     });
-    $('.timeline').droppable(
+    $('.time-scale-container').droppable(
       {
-        hoverClass: "timeline-hover",
+        hoverClass: "time-scale-hover",
         drop: function (event, ui) {
           var animation = angular.element(ui.draggable).scope().animation;
           var ani = {

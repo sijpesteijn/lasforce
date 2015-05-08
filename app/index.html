@@ -30,31 +30,10 @@
 <!-- Add your site or application content here -->
 <div class="container">
   <div class="header">
-    <info></info>
+    <!--<info></info>-->
     <navigation></navigation>
     <h3 class="text-muted">LasForce</h3>
-
-    <div class="col-md-12">
-      <div class="col-md-9">
-        <animation-list data-draggable="true" data-snap-to="'.timeline'"></animation-list>
-      </div>
-      <div class="col-md-3">
-        <!--<animation-view animation="timelineSelectedElement.animation"></animation-view>-->
-      </div>
-    </div>
-    <div class="col-md-12">
-      <time-line></time-line>
-    </div>
-    <timeline-element-info></timeline-element-info>
-    <!--<div ng-view></div>-->
-    <!--<div claas="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-    <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">-->
-    <!--<animation-list></animation-list>-->
-    <!--</div>-->
-    <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">-->
-    <!--<animation-view></animation-view>-->
-    <!--</div>-->
-    <!--</div>  -->
+    <div ng-view></div>
   </div>
 
   <!--<div class="footer">-->
@@ -108,7 +87,7 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
+<script src="app.js"></script>
 
 <script src="objects/Settings.js"></script>
 <script src="scripts/directives/frameList.js"></script>
@@ -119,9 +98,9 @@
 <script src="modals/uploadIlda/uploadIlda.js"></script>
 
 <!-- Views -->
-<script src="views/animation_view/animation_view.js"></script>
-<script src="views/sequence_view/sequence_view.js"></script>
-<script src="views/show_view/show_view.js"></script>
+<script src="pages/animation_page/animation_page.js"></script>
+<script src="pages/sequence_page/sequence_page.js"></script>
+<script src="pages/show_page/show_page.js"></script>
 
 <!-- Directives -->
 <!--<script src="directives/animationList/animation.js"></script>-->

@@ -26,6 +26,9 @@ var app = angular
       .when('/animations', {
         templateUrl: 'pages/animation_page/animation_page.html'
       })
+      .when('/create_animation', {
+        templateUrl: 'pages/animation_edit_page/animation_edit_page.html'
+      })
       .when('/sequences', {
         templateUrl: 'pages/sequence_page/sequence_page.html'
       })

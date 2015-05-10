@@ -1,66 +1,75 @@
 {
-    "MAIN" :
-    {
-        "OK" : "Ok",
-        "SAVE" : "Save",
-        "CANCEL" : "Cancel",
-        "CLOSE" : "Close"
-    },
-
-    "NAV": {
-      "SHOWS" : "Shows",
-      "ANIMATIONS": "Animations",
-      "SEQUENCES": "Sequences"
-    },
-
+  "MAIN": {
+    "OK": "Ok",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close"
+  },
+  "NAV": {
+    "SHOWS": "Shows",
+    "CREATE_ANIMATION": "Create Animation",
+    "ANIMATIONS": "Animations",
+    "SEQUENCES": "Sequences"
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "COMPANY_NAME": "Companyname"
+  },
+  "UPLOAD_ILDA": {
+    "TITLE": "ILDA file upload",
+    "FILE_NAME": "Select an ilda file",
+    "UPLOAD": "Send"
+  },
+  "TIMELINE_ELEMENT": {
+    "NAME": "Name",
+    "FRAME_NAME": "New name",
+    "LOADING_LIST": "Loading animation list....",
+    "EMPTY_LIST": "No animations.",
     "SETTINGS": {
-        "TITLE" : "Settings",
-        "COMPANY_NAME": "Companyname"
-    },
-
-    "UPLOAD_ILDA": {
-        "TITLE" : "ILDA file upload",
-        "FILE_NAME": "Select an ilda file",
-        "UPLOAD" : "Send"
-    },
-
-    "TIMELINE_ELEMENT" : {
-        "NAME" : "Name",
-        "FRAME_NAME" : "New name",
-        "LOADING_LIST" : "Loading animation list....",
-        "EMPTY_LIST" : "No animations.",
-        "SETTINGS" : {
-          "TITLE": "Animation settings",
-          "FRAMERATE": "Framerate",
-          "LOOP": "Loop"
+      "TITLE": "Animation settings",
+      "FRAMERATE": "Framerate",
+      "LOOP": "Loop"
+    }
+  },
+  "ANIMATION": {
+    "EDIT": {
+      "TOOLS": {
+        "TITLE": "Tools",
+        "INFO": {
+          "TITLE": "Tool settings"
         }
+      }
     },
-
-  "ANIMATION" : {
+    "FRAMES": {
+      "TITLE": "Frames"
+    },
     "LIST": {
-     "TITLE": "Animations"
+      "TITLE": "Animations"
+    },
+    "METADATA": {
+      "TITLE": "Properties",
+      "FRAMERATE": "Framerate",
+      "LOOPCOUNT": "Loopcount",
+      "COLOR": "Color"
     }
   },
-
-  "SEQUENCE" : {
-    "DROP" : "Drop animations here to start a new sequence",
-    "LIST" : {
-      "TITLE" : "Sequences"
+  "SEQUENCE": {
+    "DROP": "Drop animations here to start a new sequence",
+    "LIST": {
+      "TITLE": "Sequences"
     }
   },
-
-    "DRAW" : {
-        "RECTANGLE" : "Rectangle",
-        "CIRCLE" : "Circle",
-        "PENCIL" : "Pencil",
-        "SELECT" : "Select",
-        "PATH" : "Free hand",
-        "LINE" : "Line",
-        "TEXT" : "Text",
-        "SAVE" : "Save",
-        "NEW_FRAME" : "New frame",
-        "NAME" : "New name",
-        "NEW_FRAME" : "New frame",
-        "COPY_ITEMS" : "Clone shapes"
-    }
+  "DRAW": {
+    "RECTANGLE": "Rectangle",
+    "CIRCLE": "Circle",
+    "PENCIL": "Pencil",
+    "SELECT": "Select",
+    "PATH": "Free hand",
+    "LINE": "Line",
+    "TEXT": "Text",
+    "SAVE": "Save",
+    "NEW_FRAME": "Frame",
+    "NAME": "New name",
+    "COPY_ITEMS": "Clone shapes"
+  }
 }

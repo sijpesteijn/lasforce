@@ -14,6 +14,7 @@
                 "animation-load-ilda": "$t(settings.rest.base.laser)/animations/:id/data",
                 "show-list": "$t(settings.rest.base.laser)/shows/:id",
                 "show-update": "$t(settings.rest.base.laser)/shows/:show",
+                "ilda-settings": "$t(settings.rest.base.laser)/settings",
 
                 "animation": "$t(settings.rest.base.laser)/animations",
                 "animationUpload": "$t(settings.rest.templ.animation)/upload",

@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title" data-ng-i18next>ANIMATION.FRAMES.TITLE</h4>
+  </div>
+  <div class="panel-body frame-list">
+    <div class="input-group input-group-sm" data-ng-repeat="frame in frames">
+      <span id="frame_{{frame.id}}" class="input-group-addon"><i class="fa fa-edit" data-ng-click="frame.edit = true"></i></span>
+      <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.name" data-ng-keyup="$event.keyCode == 13 && (frame.edit = false)">
+      <span class="form-control" data-ng-show="!frame.edit" data-ng-class="{'selectedFrame': frame.id == currentFrame}">{{ frame.name }}</span>
+      <span class="input-group-addon"><i class="fa fa-remove" data-ng-click="removeFrame(frame)"></i></span>
+    </div>
+  </div>
+</div>

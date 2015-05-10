@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('animationPageCtrl', function($scope) {
+app.controller('animationEditPageCtrl', function($scope) {
+  $scope.selectedTool;
   //$scope.selectedAnimation; // = {id:1,name:'Kerst'};
   $scope.animationMouseOver = function(animationId) {
     $scope.selectedAnimationId = animationId;

@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title" data-ng-i18next>ANIMATION.METADATA.TITLE</h4>
+  </div>
+  <div class="panel-body animation-metadata">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-edit"></i></span>
+      <input type="text" class="form-control" data-ng-model="animation.name" placeholder="Name" aria-describedby="sizing-addon3">
+    </div>
+    <div class="input-group input-group-sm">
+      <label for="framerate" data-ng-i18next>ANIMATION.METADATA.FRAMERATE</label>
+      <input id="framerate" data-ng-model="animation.framerate" ng-keyup="$event.keyCode == 13 && updateFramerate()">
+    </div>
+    <div class="input-group input-group-sm">
+      <label for="loopCount" data-ng-i18next>ANIMATION.METADATA.LOOPCOUNT</label>
+      <input id="loopCount" data-ng-model="animation.loopCount" ng-keyup="$event.keyCode == 13 && updateLoopCount()">
+      <input type="checkbox" data-ng-click="toggleInfinitive()">
+    </div>
+  </div>
+</div>

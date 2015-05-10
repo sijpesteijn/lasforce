@@ -1,0 +1,8 @@
+<div class="player-controls">
+  <button ng-click="rewind()"><i class="fa fa-backward"></i></button>
+  <button ng-click="backward()"><i class="fa fa-step-backward"></i></button>
+  <button ng-click="togglePlay()"><i class="fa fa-play" ng-show="!playing"></i><i class="fa fa-pause" ng-show="playing"></i> </button>
+  <button ng-click="forward()"><i class="fa fa-step-forward"></i></button>
+  <button ng-click="last()"><i class="fa fa-forward"></i></button>
+  <button ng-class="{'pushed' : loop}" ng-click="toggleLoop()" data-toggle="button"><i class="fa fa-retweet"></i></button>
+</div>

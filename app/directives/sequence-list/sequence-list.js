@@ -55,6 +55,9 @@ app.controller('sequenceListCtrl', function($scope, $resource, settings) {
           }
           $scope.tiles.push(tile);
         });
+        if ($scope.tiles.length > 0) {
+          $scope.selectedSequence = $scope.tiles[0].sequence;
+        }
       },
       function(data, status) {
         throw {

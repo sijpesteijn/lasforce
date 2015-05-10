@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('animationViewCtrl', function ($scope, $http, $resource, $interval, settings) {
+app.controller('animationViewCtrl', function ($scope, $http, $resource, $interval, paperFactory, settings) {
   var viewWindow, autoplayInterval;
   $scope.currentFrame = 0;
   $scope.autoPlay = angular.isUndefined($scope.autoPlay) ? true : $scope.autoPlay;
@@ -12,42 +12,6 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
     viewWindow = new paper.Rectangle(2, 2, canvas.width() - 4, canvas.height() - 4);
     paper.install(window);
     paper.setup('animationCanvas');
-  }
-
-  function createPaperElement(element) {
-    if (element.type === 'Path') {
-      var path = new paper.Path();
-      path.segments = element.segments;
-      path.strokeColor = element.strokeColor;
-      path.strokeWidth = element.strokeWidth;
-      path.closed = element.closed;
-      //path.fitBounds(viewWindow);
-      //path.scale(0.04);
-      return path;
-    }
-    if (element.type === 'Group') {
-      var group = new paper.Group();
-      group.applyMatrix = child.applyMatrix;
-      var children = [];
-      angular.forEach(element.children, function (child) {
-        children.push(createPaperElement(child));
-      });
-      group.children = children;
-      return group;
-    }
-    if (element.type === 'PointText') {
-      var pointText = new paper.PointText();
-      pointText.applyMatrix = element.applyMatrix;
-      pointText.content = element.content;
-      pointText.fillColor = element.fillColor;
-      pointText.font = element.font;
-      pointText.fontFamily = element.fontFamily;
-      pointText.fontSize = element.fontSize;
-      pointText.fontWeight = element.fontWeight;
-      pointText.leading = element.leading;
-      pointText.matrix = element.matrix;
-      return pointText;
-    }
   }
 
   function stop() {
@@ -90,7 +54,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
           paperLayer.name = layer.name;
           paperLayer.visible = layer.visible;
           angular.forEach(layer.children, function (element) {
-            paperLayer.addChild(createPaperElement(element));
+            paperLayer.addChild(paperFactory.createElement(element));
           });
         });
         project.layers[$scope.currentFrame].visible = true;
@@ -140,6 +104,11 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
     } else if (angular.isUndefined(animationId) && $scope.playing) {
       stopAndClear();
     }
+  });
+
+  $scope.$on('$destroy', function() {
+    console.log("destroy");
+    $interval.cancel(autoplayInterval);
   });
 
   init();

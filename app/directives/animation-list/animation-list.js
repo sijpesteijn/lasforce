@@ -57,7 +57,8 @@ app.directive('animationList', function() {
     replace: true,
     scope: {
       cbMouseOver: '&',
-      cbMouseOut: '&'
+      cbMouseOut: '&',
+      cbMouseClick: '&'
     }
   }
 });
@@ -70,7 +71,8 @@ app.directive('animation', function() {
     scope: {
       animation: '=',
       cbMouseOver: '&',
-      cbMouseOut: '&'
+      cbMouseOut: '&',
+      cbMouseClick: '&'
     },
     link: function(scope, element) {
 

@@ -34,6 +34,14 @@ app.controller('animationMetadataCtrl', function($scope) {
     }
   };
 
+  $scope.$watch('animation.framerate', function(newValue) {
+    framerate.val(newValue);
+  });
+
+  $scope.$watch('animation.loopCount', function(newValue) {
+    loopCount.val(newValue);
+  });
+
   $scope.updateFramerate = function() {
     $scope.animation.framerate = framerate.val();
   };

@@ -6,8 +6,8 @@
     <div class="input-group input-group-sm" data-ng-repeat="frame in frames">
       <span id="frame_{{frame.id}}" class="input-group-addon"><i class="fa fa-edit" data-ng-click="frame.edit = true"></i></span>
       <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.name" data-ng-keyup="$event.keyCode == 13 && (frame.edit = false)">
-      <span class="form-control" data-ng-show="!frame.edit" data-ng-class="{'selectedFrame': frame.id == currentFrame}">{{ frame.name }}</span>
-      <span class="input-group-addon"><i class="fa fa-remove" data-ng-click="removeFrame(frame)"></i></span>
+      <span class="clickable form-control" data-ng-click="setCurrentFrame($index)" data-ng-show="!frame.edit" data-ng-class="{'selectedFrame': $index == currentFrame}">{{ frame.name }}</span>
+      <span class="input-group-addon"><i class="fa fa-remove" data-ng-class="{'clickable' : frames.length > 1}" data-ng-click="removeFrame(frame.index)" data-ng-disabled="frames.length == 1"></i></span>
     </div>
   </div>
 </div>

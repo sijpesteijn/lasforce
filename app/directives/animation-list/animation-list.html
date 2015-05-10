@@ -16,7 +16,7 @@
         </span>
       </li>
       <li class="tile clickable" data-ng-repeat="animation in animations | orderBy:'-name'"
-          data-ng-click="selectAnimation(animation)" data-ng-mouseover="cbMouseOver({animationId:animation.id})"
+          data-ng-click="cbMouseClick({animationId:animation.id})" data-ng-mouseover="cbMouseOver({animationId:animation.id})"
           data-ng-mouseout="cbMouseOut({animationId:animation.id})">
         <animation animation="animation"></animation>
       </li>

@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="bower_components/colpick/css/colpick.css" />
   <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
@@ -54,13 +53,6 @@
 <script src="bower_components/modernizr/modernizr.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
@@ -73,7 +65,13 @@
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
 <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-<script src="bower_components/colpick/js/colpick.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/i18next/i18next.js"></script>
 <script src="bower_components/ng-i18next/dist/ng-i18next.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -85,6 +83,7 @@
 <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
 <script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
+<script src="bower_components/colpick/js/colpick.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -102,15 +101,11 @@
 
 <!-- Factories -->
 <script src="factories/paper-factory.js"></script>
-
-<!-- Views -->
-<script src="pages/animation_edit_page/animation_edit_page.js"></script>
-<script src="pages/animation_page/animation_page.js"></script>
-<script src="pages/sequence_page/sequence_page.js"></script>
-<script src="pages/show_page/show_page.js"></script>
+<script src="factories/colpick.js"></script>
 
 <!-- Directives -->
 <!--<script src="directives/animationList/animation.js"></script>-->
+<script src="directives/navigation/navigation.js"></script>
 <script src="directives/animation-edit/animation-edit.js"></script>
 <script src="directives/animation-list/animation-list.js"></script>
 <script src="directives/animation-frames/animation-frames.js"></script>
@@ -123,10 +118,16 @@
 <script src="directives/timeline/timeline.js"></script>
 <script src="directives/color-picker/color-picker.js"></script>
 <script src="directives/info/info.js"></script>
-<script src="directives/navigation/navigation.js"></script>
 <script src="directives/player-controls/player-controls.js"></script>
 <script src="directives/showList/showList.js"></script>
 <script src="directives/showView/showView.js"></script>
+
+<!-- Views -->
+<script src="pages/animation_edit_page/animation_edit_page.js"></script>
+<script src="pages/animation_page/animation_page.js"></script>
+<script src="pages/sequence_page/sequence_page.js"></script>
+<script src="pages/show_page/show_page.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>

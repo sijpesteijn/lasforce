@@ -2,56 +2,52 @@
 
 app.factory('paperFactory', function() {
 
-  function createShape(shape, startPoint) {
-    if (shape == 'circle') {
-      return new paper.Path.Circle(startPoint, new Size(1, 1));
+  function createShape(type, startPoint) {
+    if (type == 'circle') {
+      return new paper.Circle(startPoint, new Size(1, 1));
     }
-    if (shape == 'rectangle') {
-      return new paper.Path.Rectangle(startPoint, new Size(1, 1));
+    if (type == 'rectangle') {
+      return new paper.Rectangle(startPoint, new Size(1, 1));
     }
   }
 
-  function createBasicShapeHandler() {
-    var drawTool = new Tool();
-    var drawing = false;
-    var shape;
-    var startPoint;
-    drawTool.activate();
-    drawTool.onMouseDown = function (e) {
-      drawing = true;
-      startPoint = new Point(e.event.offsetX, e.event.offsetY);
-      shape = createShape(type, startPoint);
-      shape.strokeColor = $scope.color;
-      shape.strokeWidth = 2;
-      project.activeLayer.addChild(shape);
-      paper.view.draw();
+  function createBasicShapeHandler(type) {
+    this.drawTool = new Tool();
+    this.drawing = false;
+    this.shape;
+    this.startPoint;
+    this.drawTool.onMouseDown = function (e) {
+      this.drawing = true;
+      this.startPoint = new Point(e.event.offsetX, e.event.offsetY);
+      this.shape = createShape(type, this.startPoint);
+      this.shape.strokeColor = 'FFFFFF'; //$scope.color;
+      this.shape.strokeWidth = 2;
+      project.activeLayer.addChild(this.shape);
+      paper.view.update();
     }
-    drawTool.onMouseMove = function (e) {
-      if (drawing) {
-        if (startPoint.x != e.event.offsetX && startPoint.y != e.event.offsetY) {
-          if (startPoint.x < e.event.offsetX) {
-            shape.bounds.left = startPoint.x;
-            shape.bounds.right = e.event.offsetX;
+    this.drawTool.onMouseMove = function (e) {
+      if (this.drawing) {
+        if (this.startPoint.x != e.event.offsetX && this.startPoint.y != e.event.offsetY) {
+          if (this.startPoint.x < e.event.offsetX) {
+            this.shape.setLeft(this.startPoint.x);
+            this.shape.setRight(e.event.offsetX);
           } else {
-            shape.bounds.left = e.event.offsetX;
-            shape.bounds.right = startPoint.x;
+            this.shape.setLeft(e.event.offsetX);
+            this.shape.setRight(this.startPoint.x);
           }
-          if (startPoint.y < e.event.offsetY) {
-            shape.bounds.top = startPoint.y;
-            shape.bounds.bottom = e.event.offsetY;
+          if (this.startPoint.y < e.event.offsetY) {
+            this.shape.setTop(this.startPoint.y);
+            this.shape.setBottom(e.event.offsetY);
           } else {
-            shape.bounds.top = e.event.offsetY;
-            shape.bounds.bottom = startPoint.y;
+            this.shape.setTop(e.event.offsetY);
+            this.shape.setBottom(this.startPoint.y);
           }
-          paper.view.draw();
         }
       }
     }
-    drawTool.onMouseUp = function (e) {
-      drawing = false;
-      paper.view.draw();
+    this.drawTool.onMouseUp = function (e) {
+      this.drawing = false;
     }
-    return drawTool;
   }
 
   function createPathHandler() {
@@ -165,7 +161,8 @@ app.factory('paperFactory', function() {
   var createToolHandler = function(type) {
     console.log(type + ' drawTool selected.');
     if (type === 'rectangle' || type === 'circle') {
-      return createBasicShapeHandler();
+      var toolHandler = new createBasicShapeHandler(type);
+      return toolHandler;
     } else if (type === 'path') {
       return createPathHandler();
     } else if (type === 'text') {
@@ -175,14 +172,20 @@ app.factory('paperFactory', function() {
 
 
   var createElement = function(element) {
+      if (element.type === 'Line') {
+        var line = new Path.Line({
+          from: [20, 20],
+          to: [80, 80],
+          strokeColor: 'red'
+        });
+        return line;
+      }
       if (element.type === 'Path') {
         var path = new paper.Path();
         path.segments = element.segments;
         path.strokeColor = element.strokeColor;
         path.strokeWidth = element.strokeWidth;
         path.closed = element.closed;
-        //path.fitBounds(viewWindow);
-        //path.scale(0.04);
         return path;
       }
       if (element.type === 'Group') {

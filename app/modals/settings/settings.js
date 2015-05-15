@@ -1,26 +1,13 @@
 'use strict';
 
-app.controller('lasforceSettingsCtrl', function ($scope, $resource, settings, $modalInstance) {
+app.controller('lasforceSettingsCtrl', function ($scope, $resource, settings, lasforceSettings, $modalInstance) {
   var framerate, loopCount;
+  $scope.lasforceSettings = lasforceSettings;
 
   function init() {
-    $resource(settings.get('rest.templ.ilda-settings')).get(
-      function (data) {
-        $scope.settings = data;
-        //$scope.colorValue = $scope.settings.default_color;
-      },
-      function () {
-
-      });
-
     framerate = $('#framerate').spinner();
     loopCount = $('#loopCount').spinner();
   }
-
-  $scope.$watch('settings', function(newValue) {
-    //$scope.settings.default_color = $scope.colorValue;
-    console.log('Bla');
-  }, true);
 
   $scope.toggleInfinitive = function () {
     if ($scope.loopCount == -1) {
@@ -30,8 +17,7 @@ app.controller('lasforceSettingsCtrl', function ($scope, $resource, settings, $m
       $scope.loopCount = -1;
       loopCount.spinner('disable');
     }
-  }
-
+  };
 
   $scope.cancel = function () {
     $modalInstance.close();
@@ -39,9 +25,9 @@ app.controller('lasforceSettingsCtrl', function ($scope, $resource, settings, $m
 
   $scope.save = function () {
     $resource(settings.get('rest.templ.ilda-settings')).save(
-      {settings: $scope.settings},
+      {settings: $scope.lasforceSettings},
       function (data) {
-        $modalInstance.close();
+        $modalInstance.close({lasforceSettings: $scope.lasforceSettings});
       },
       function () {
 
@@ -52,16 +38,27 @@ app.controller('lasforceSettingsCtrl', function ($scope, $resource, settings, $m
 });
 
 app.factory('lasforceSettings', function ($modal) {
-  var openSettingsModal = function () {
+
+  function init() {
+  }
+
+  var openSettingsModal = function (lasforceSettings) {
     return $modal.open({
       templateUrl: '/modals/settings/settings.html',
-      controller: 'lasforceSettingsCtrl'
+      controller: 'lasforceSettingsCtrl',
+      resolve: {
+        lasforceSettings : function() {
+          return lasforceSettings;
+        }
+      }
     });
   }
 
+  init();
+
   return {
-    openSettingsModal: function () {
-      return openSettingsModal();
+    openSettingsModal: function (lasforceSettings) {
+      return openSettingsModal(lasforceSettings);
     }
   };
 

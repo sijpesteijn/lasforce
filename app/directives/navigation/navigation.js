@@ -1,10 +1,24 @@
 'use strict';
 
-app.controller('navigationCtrl', function($scope, lasforceSettings) {
+app.controller('navigationCtrl', function($rootScope, $scope, $resource, settings, lasforceSettings) {
+
+  function init() {
+    $resource(settings.get('rest.templ.ilda-settings')).get(
+      function (data) {
+        $rootScope.lasforceSettings = data;
+      },
+      function () {
+
+      });
+  }
 
   $scope.settings = function() {
-    lasforceSettings.openSettingsModal();
+    lasforceSettings.openSettingsModal($rootScope.lasforceSettings).result.then(function(lasforceSettings) {
+      $rootScope.lasforceSettings = lasforceSettings;
+    });
   }
+
+  init();
 });
 
 app.directive('navigation', function() {

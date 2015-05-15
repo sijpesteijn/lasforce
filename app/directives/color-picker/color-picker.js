@@ -1,9 +1,9 @@
 'use strict';
 
-app.controller('colorpickerCtrl', function ($scope) {
+app.controller('colorpickerCtrl', function ($rootScope, $scope) {
 
   $scope.openColorPick = function() {
-    $scope.colorValue = angular.undefined ? 'FFFFFF' : $scope.colorValue;
+    $scope.colorValue = angular.isUndefined($scope.colorValue) ? 'white' : $scope.colorValue;
     var cp = $('.color-box')
       .colpick({
       colorScheme: 'dark',
@@ -12,7 +12,7 @@ app.controller('colorpickerCtrl', function ($scope) {
       onSubmit: function (hsb, hex, rgb, el) {
         $(el).css('background-color', '#' + hex);
         $(el).colpickHide();
-        $scope.colorValue = hex;
+        $scope.colorValue = '#' + hex;
       },
       onChange: function(hsb, hex, rgb, el) {
 

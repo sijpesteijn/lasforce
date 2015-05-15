@@ -20,8 +20,9 @@ var app = angular
     'jm.i18next',
     'ui.bootstrap',
     'angularFileUpload'
-  ])
-  .config(function ($routeProvider) {
+  ]);
+
+app.config(function ($routeProvider) {
     $routeProvider
       .when('/animations', {
         templateUrl: 'pages/animation_page/animation_page.html'

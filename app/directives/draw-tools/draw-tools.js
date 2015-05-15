@@ -1,16 +1,15 @@
 'use strict';
 
-app.controller('drawToolsCtrl', function($scope) {
-
-  function init() {
-    $scope.color = 'FFFFFF';
-  }
+app.controller('drawToolsCtrl', function($scope, colpick) {
 
   $scope.setTool = function(tool) {
     $scope.selectedTool = tool;
   };
 
-  init();
+  $scope.openColorPick = function(identifier) {
+    colpick.openColorPick(identifier, 'white');
+
+  }
 });
 
 app.directive('drawTools', function() {

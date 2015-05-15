@@ -9,16 +9,16 @@
     <tab heading="Animation defaults">
       <div class="input-group input-group-sm">
         <label for="framerate" data-ng-i18next>ANIMATION.METADATA.FRAMERATE</label>
-        <input id="framerate" data-ng-model="settings.default_framerate">
+        <input id="framerate" data-ng-model="lasforceSettings.default_framerate">
       </div>
       <div class="input-group input-group-sm">
         <label for="loopCount" data-ng-i18next>ANIMATION.METADATA.LOOPCOUNT</label>
-        <input id="loopCount" data-ng-model="settings.default_loopCount">
+        <input id="loopCount" data-ng-model="lasforceSettings.default_loopCount">
         <input type="checkbox" data-ng-click="toggleInfinitive()">
       </div>
       <div class="input-group input-group-sm">
         <label data-ng-i18next>ANIMATION.METADATA.COLOR</label>
-        <colorpicker color-value="settings.default_color"></colorpicker>
+        <colorpicker color-value="lasforceSettings.default_color"></colorpicker>
       </div>
     </tab>
     <!--<tab select="alertMe()">-->

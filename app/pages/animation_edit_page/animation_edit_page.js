@@ -1,11 +1,10 @@
 'use strict';
 
-app.controller('animationEditPageCtrl', function($scope, $rootScope) {
+app.controller('animationEditPageCtrl', function($scope) {
   $scope.selectedTool;
   $scope.selectedColor = '#CECECE';
 
   function init() {
-
   }
 
   $scope.$watch('lasforceSettings', function(lasforceSettings) {
@@ -14,7 +13,12 @@ app.controller('animationEditPageCtrl', function($scope, $rootScope) {
     }
   }, true);
 
-  $scope.animationMouseOver = function(animationId) {
+  //$scope.$watch('selectedColor', function(selectedColor) {
+  //  console.log('SELECTED COLOR: ' + selectedColor);
+  //  $scope.selectedColor = selectedColor;
+  //},true);
+
+    $scope.animationMouseOver = function(animationId) {
     $scope.selectedAnimationId = animationId;
   };
 

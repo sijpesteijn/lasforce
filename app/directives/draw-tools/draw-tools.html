@@ -3,28 +3,35 @@
     <h4 class="panel-title" data-ng-i18next>ANIMATION.EDIT.TOOLS.TITLE</h4>
   </div>
   <div class="panel-body draw-tools">
-    <div>
-      <button class=" clickable" ng-class="{'selectedTool' : selectedTool == 'rectangle' }"
-              ng-click="setTool('rectangle')" ng-i18next="[title]DRAW.RECTANGLE"><i class="fa fa-cube"></i></button>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'circle' }"
-              ng-click="setTool('circle')" ng-i18next="[title]DRAW.CIRCLE"><i class="fa fa-circle"></i></button>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'shape' }"
-              ng-click="setTool('shape')" ng-i18next="[title]DRAW.SELECT"><i class="fa fa-pencil"></i></button>
-    </div>
-    <div>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'path' }" ng-click="setTool('path')"
-              ng-i18next="[title]DRAW.PATH"><i class="fa fa-steam"></i></button>
+    <!--<div>-->
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'circle' }"-->
+              <!--ng-click="setTool('circle')" ng-i18next="[title]DRAW.CIRCLE"><i class="fa fa-circle"></i></button>-->
       <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'line' }"
-              ng-click="setTool('line')" ng-i18next="[title]DRAW.LINE"><i class="fa fa-long-arrow-right"></i></button>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'text' }" ng-click="setTool('text')"
-              ng-i18next="[title]DRAW.TEXT"><i class="fa fa-font"></i></button>
-    </div>
-    <div>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'save' }" ng-click="save();"
-              ng-i18next="[title]DRAW.SAVE"><i class="fa fa-save"></i></button>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'new frame' }"
-              ng-click="addFrame();" ng-i18next="[title]DRAW.NEW_FRAME"><i class="fa fa-female"></i></button>
+              ng-click="setTool('line')" ng-i18next="[title]DRAW.LINE"><i class="fa fa-pencil"></i></button>
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'path' }" ng-click="setTool('path')"-->
+              <!--ng-i18next="[title]DRAW.PATH"><i class="fa fa-paint-brush"></i></button>-->
       <colorpicker color-value="selectedColor"></colorpicker>
-    </div>
+      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'new frame' }"
+              ng-click="addFrame();" ng-i18next="[title]DRAW.NEW_FRAME"><i class="fa fa-bars"></i></button>
+      <button class="clickable" ng-click="save()" ng-i18next="[title]DRAW.SAVE"><i class="fa fa-save"></i></button>
+      <button class="clickable" ng-click="undo()" ng-disabled="!canUndo()" ng-i18next="[title]DRAW.UNDO"><i class="fa fa-undo"></i></button>
+      <button class="clickable" ng-click="redo()" ng-disabled="!canRedo()" ng-i18next="[title]DRAW.REDO"><i class="fa fa-repeat"></i></button>
+
+    {{getHistoryIndex()}}
+      <!--<button class=" clickable" ng-class="{'selectedTool' : selectedTool == 'rectangle' }"-->
+              <!--ng-click="setTool('rectangle')" ng-i18next="[title]DRAW.RECTANGLE"><i class="fa fa-cube"></i></button>-->
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'circle' }"-->
+              <!--ng-click="setTool('circle')" ng-i18next="[title]DRAW.CIRCLE"><i class="fa fa-circle"></i></button>-->
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'shape' }"-->
+              <!--ng-click="setTool('shape')" ng-i18next="[title]DRAW.SELECT"><i class="fa fa-pencil"></i></button>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'text' }" ng-click="setTool('text')"-->
+              <!--ng-i18next="[title]DRAW.TEXT"><i class="fa fa-font"></i></button>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'save' }" ng-click="save();"-->
+              <!--ng-i18next="[title]DRAW.SAVE"><i class="fa fa-save"></i></button>-->
+    <!--</div>-->
   </div>
 </div>

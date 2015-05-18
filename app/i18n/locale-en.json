@@ -50,7 +50,8 @@
       "TITLE": "Properties",
       "FRAMERATE": "Framerate",
       "LOOPCOUNT": "Loopcount",
-      "COLOR": "Color"
+      "COLOR": "Color",
+      "ELEMENTS": "Elements"
     }
   },
   "SEQUENCE": {

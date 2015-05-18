@@ -3,9 +3,8 @@
 app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $resource, $interval, $location, paperFactory, history, settings) {
   paper.install(window);
   paper.setup('animationEditCanvas');
-  var walkerInterval, currentLayer;
+  var walkerInterval, currentLayer, toolInUse;
   $scope.frames = [];
-  $scope.history = [];
   $scope.frameIndex = 0;
   $scope.currentFrame = 0;
   $scope.playing = false;
@@ -19,6 +18,9 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
 
   function init() {
     project.clear();
+    toolInUse = null;
+    $scope.frames = [];
+    history.clear();
     if (!angular.isDefined($scope.zoom)) {
       $scope.zoom = 1;
     }
@@ -30,6 +32,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
         {id: animationId},
         function (data) {
           $scope.animation = {
+            id: data.metaData.id,
             name: data.metaData.name,
             framerate: data.metaData.frameRate,
             loopCount: data.metaData.loopCount
@@ -51,31 +54,6 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     }
   }
 
-  //var tool, shape;
-  //
-  //function setRectangleTool() {
-  //  tool = new Tool();
-  //
-  //  // Define a mousedown and mousedrag handler
-  //  //tool.onMouseDown = function(event) {
-  //  //  shape = new Path();
-  //  //  shape.strokeColor = 'red';
-  //  //  shape.add(event.point);
-  //  //}
-  //
-  //  tool.onMouseDown = function (e) {
-  //    shape = new Rectangle(new Point(10,10), new Size(10, 10));
-  //    shape.strokeColor = 'red'; //$scope.color;
-  //    shape.strokeWidth = 2;
-  //    //project.activeLayer.addChild(shape);
-  //    paper.view.update();
-  //  }
-  //
-  //  //tool.onMouseDrag = function(event) {
-  //  //  shape.add(event.point);
-  //  //}
-  //}
-
   function lineTool() {
     this.tool = new Tool();
     this.tool.fixedDistance = 50;
@@ -85,6 +63,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     this.path;
     this.selectedPoint;
     this.color = $scope.selectedColor;
+    this.tool.activate();
     var that = this;
     this.addToHistory = function(parent, item) {
       var item = {
@@ -193,18 +172,17 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     }
   }
 
-  var newTool;
   $scope.$watch('selectedTool', function(newValue) {
     if (angular.isDefined(newValue)) {
-      newTool = null;
+      toolInUse = null;
       if (newValue === 'line') {
-        newTool = new lineTool();
+        toolInUse = new lineTool();
       }
       if (newValue === 'circle') {
-        newTool = new circleTool();
+        toolInUse = new circleTool();
       }
       if (newValue === 'path') {
-        newTool = new pathTool();
+        toolInUse = new pathTool();
       }
     }
   });
@@ -222,8 +200,8 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     console.log('COLOR: ' + selectedColor);
     $scope.selectedColor = selectedColor;
 
-    if (newTool) {
-      newTool.onColorChange(selectedColor);
+    if (toolInUse) {
+      toolInUse.onColorChange(selectedColor);
     }
   }, true);
 
@@ -257,6 +235,26 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   $scope.redo = function() {
     history.redo();
     paper.view.update();
+  };
+
+  $scope.save = function() {
+    var lasforceAnimation = {
+      metaData: $scope.animation,
+      layers: paperFactory.getObjectTree()
+    }
+    $resource(settings.get('rest.templ.animationSave')).save(
+      null,
+      lasforceAnimation,
+    function(data) {
+      console.log('Saved: ' + data);
+    },
+    function(data, status) {
+      throw {
+        message: 'Could not save animation',
+        status: status
+      }
+    });
+
   };
 
   $scope.rewind = function() {
@@ -331,8 +329,9 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   }
 
   $scope.addFrame = function(layer) {
-    if (newTool)
-      newTool.onNewFrame();
+    if (toolInUse) {
+      toolInUse.onNewFrame();
+    }
     var children;
     if (project.layers.length > 0)
       children = project.activeLayer.children;

@@ -10,7 +10,7 @@ app.factory('history', function() {
 
   var add = function(item) {
     if (index < history.length) {
-      history.slice(index);
+      history.slice(index, history.length);
     }
     index = history.push(item) - 1;
   };
@@ -26,6 +26,7 @@ app.factory('history', function() {
     if (index < history.length) {
       var element = history[++index];
       element.parent.add(element.item.point);
+      element.item = element.parent.segments[element.parent.segments.length-1];
     }
   };
 

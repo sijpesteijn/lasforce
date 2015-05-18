@@ -168,8 +168,48 @@ app.factory('paperFactory', function() {
     } else if (type === 'text') {
       return createTextHandler();
     }
-  }
+  };
 
+  var getObjectTree = function() {
+    var layers = [];
+    angular.forEach(project.layers, function(layer) {
+      var children = [];
+      angular.forEach(layer.children, function(child) {
+        var type = child.toJSON()[0];
+        if (type === 'Path') {
+          var segments = [];
+          angular.forEach(child.segments, function(segment) {
+            var segmentObj = {
+              x: segment.point.x,
+              y: segment.point.y
+            };
+            segments.push(segmentObj);
+          })
+          var childObj = {
+            type: 'path',
+            applyMatrix: child.applyMatrix,
+            strokeWidth: child.strokeWidth,
+            strokeColor: {
+              blue: child.strokeColor.blue,
+              green: child.strokeColor.green,
+              red: child.strokeColor.red
+            },
+            closed: child.closed,
+            segments: segments
+          }
+          children.push(childObj);
+        }
+      });
+      var layerObj = {
+        name: layer.name,
+        visible: layer.visible,
+        applyMatrix: layer.applyMatrix,
+        children: children
+      }
+      layers.push(layerObj);
+    });
+    return layers;
+  };
 
   var createElement = function(element) {
       if (element.type === 'Line') {
@@ -182,9 +222,13 @@ app.factory('paperFactory', function() {
       }
       if (element.type === 'Path') {
         var path = new paper.Path();
-        path.segments = element.segments;
-        path.strokeColor = element.strokeColor;
-        path.strokeWidth = element.strokeWidth;
+        var color = new Color(element.strokeColor.red, element.strokeColor.green, element.strokeColor.blue);
+        path.strokeColor = color;
+        path.strokeWidth = 2; //element.strokeWidth;
+        angular.forEach(element.segments, function(segment) {
+          var point = new Point(segment.x, segment.y);
+          path.add(point);
+        });
         path.closed = element.closed;
         return path;
       }
@@ -220,6 +264,9 @@ app.factory('paperFactory', function() {
     },
     createToolHandler: function(type) {
       return createToolHandler(type);
+    },
+    getObjectTree: function() {
+      return getObjectTree();
     }
   }
 });

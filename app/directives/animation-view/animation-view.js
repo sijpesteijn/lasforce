@@ -31,7 +31,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
   }
 
   function getFrameTime() {
-    return (1 / $scope.frameRate) * $scope.totalFrames * 1000;
+    return (1 / $scope.framerate) * $scope.totalFrames * 1000;
   }
 
   function loadAnimation(animationId) {
@@ -46,10 +46,10 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
         $scope.currentFrame = 0;
         $scope.totalFrames = data.layers.length;
         $scope.name = data.metaData.name;
-        $scope.frameRate = data.metaData.frameRate;
+        $scope.framerate = data.metaData.framerate;
         project.clear();
         angular.forEach(data.layers, function (layer) {
-          var paperLayer = new paper.Layer();
+          var paperLayer = new Layer();
 
           paperLayer.name = layer.name;
           paperLayer.visible = layer.visible;
@@ -58,8 +58,8 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
           });
         });
         project.layers[$scope.currentFrame].visible = true;
-        paper.view.draw();
-        paper.view.zoom = $scope.zoom;
+        paper.view.update();
+        //paper.view.zoom = $scope.zoom;
         if ($scope.autoPlay) {
           $scope.playing = true;
           $scope.frameTime = getFrameTime();
@@ -67,7 +67,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
           autoplayInterval = $interval(function () {
             project.layers[$scope.currentFrame].visible = false;
             project.layers[getNextFrameNr()].visible = true;
-            paper.view.draw();
+            paper.view.update();
           }, $scope.frameTime);
         }
       },

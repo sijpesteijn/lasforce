@@ -13,11 +13,6 @@ app.controller('animationEditPageCtrl', function($scope) {
     }
   }, true);
 
-  //$scope.$watch('selectedColor', function(selectedColor) {
-  //  console.log('SELECTED COLOR: ' + selectedColor);
-  //  $scope.selectedColor = selectedColor;
-  //},true);
-
     $scope.animationMouseOver = function(animationId) {
     $scope.selectedAnimationId = animationId;
   };

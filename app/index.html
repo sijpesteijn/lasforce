@@ -17,8 +17,10 @@
   <!-- build:css(.tmp) styles/main.css -->
 
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/colpick.css">
-  <link rel="stylesheet" href="bower_components/colpick/css/colpick.css">
+  <link rel="stylesheet" href="lib/colpick/colpick.css">
+  <link rel="stylesheet" href="lib/jquery-infobox/infobox.css">
+  <link rel="stylesheet" href="bower_components/angular-tree-control/css/tree-control.css">
+  <link rel="stylesheet" href="bower_components/angular-tree-control/css/tree-control-attribute.css">
   <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
   <!-- endbuild -->
 </head>
@@ -29,17 +31,17 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container">
+<div class="container-fluid">
   <div class="header">
-    <!--<info></info>-->
     <navigation></navigation>
-    <h3 class="text-muted">LasForce</h3>
-    <div ng-view></div>
+    <img src="images/lasforce.png" class="logo">
   </div>
+    <div ng-view></div>
 
-  <!--<div class="footer">-->
+  <div class="footer">
+
   <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
-  <!--</div>-->
+  </div>
 </div>
 
 <!-- build:js(.) scripts/oldieshim.js -->
@@ -84,11 +86,15 @@
 <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
 <script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
+<script src="bower_components/angular-tree-control/angular-tree-control.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="colpick.js"></script>
+<script src="lib/jquery-infobox/infobox.js"></script>
+<script src="lib/utility.js"></script>
+
+<script src="lib/colpick/colpick.js"></script>
 <script src="app.js"></script>
 
 <script src="objects/Settings.js"></script>
@@ -108,6 +114,7 @@
 <!-- Directives -->
 <!--<script src="directives/animationList/animation.js"></script>-->
 <script src="directives/navigation/navigation.js"></script>
+<script src="directives/animation-canvas/animation-canvas.js"></script>
 <script src="directives/animation-edit/animation-edit.js"></script>
 <script src="directives/animation-elements/animation-elements.js"></script>
 <script src="directives/animation-list/animation-list.js"></script>
@@ -116,9 +123,11 @@
 <script src="directives/animation-view/animation-view.js"></script>
 <script src="directives/draw-tools/draw-tools.js"></script>
 <script src="directives/draw-tool-info/draw-tool-info.js"></script>
+<script src="directives/laser-info/laser-info.js"></script>
 <script src="directives/sequence-list/sequence-list.js"></script>
 <script src="directives/sequence-view/sequence-view.js"></script>
-<script src="directives/timeline/timeline.js"></script>
+<script src="directives/sequence-timeline/sequence-timeline.js"></script>
+<!--<script src="directives/timeline/timeline.js"></script>-->
 <script src="directives/color-picker/color-picker.js"></script>
 <script src="directives/info/info.js"></script>
 <script src="directives/player-controls/player-controls.js"></script>

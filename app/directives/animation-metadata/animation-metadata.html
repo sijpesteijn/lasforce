@@ -12,6 +12,10 @@
       <input id="framerate" data-ng-model="animation.framerate" ng-keyup="$event.keyCode == 13 && updateFramerate()">
     </div>
     <div class="input-group input-group-sm">
+      <label for="total_frames" data-ng-i18next>ANIMATION.METADATA.TOTAL_FRAMES</label>
+      <span id="total_frames" data-ng-model="animation.totalFrames">{{ frames.length }}</span>
+    </div>
+    <div class="input-group input-group-sm">
       <label for="loopCount" data-ng-i18next>ANIMATION.METADATA.LOOPCOUNT</label>
       <input id="loopCount" data-ng-model="animation.loopCount" ng-keyup="$event.keyCode == 13 && updateLoopCount()">
       <input type="checkbox" data-ng-click="toggleInfinitive()">

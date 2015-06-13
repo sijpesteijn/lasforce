@@ -9,6 +9,7 @@
 
                 "animation-list": "$t(settings.rest.base.laser)/animations/:id",
                 "animation-update": "$t(settings.rest.base.laser)/animations/:animation",
+                "laser": "$t(settings.rest.base.laser)/laser/",
                 "sequence-list": "$t(settings.rest.base.laser)/sequences/:id",
                 "sequence-update": "$t(settings.rest.base.laser)/sequences/:sequence",
                 "animation-load-ilda": "$t(settings.rest.base.laser)/animations/:id/data",

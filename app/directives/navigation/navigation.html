@@ -1,14 +1,17 @@
 <ul class="nav nav-pills pull-right">
-  <li ng-class="{'active' : view == 'create_animation'}">
+  <li>
+    <laser-info></laser-info>
+  </li>
+  <li ng-class="{'active' : isSelected('create_animation')}">
     <a class="navbar-brand" href="#create_animation" ng-i18next>NAV.CREATE_ANIMATION</a>
   </li>
-  <li ng-class="{'active' : view == 'shows'}">
+  <li ng-class="{'active' : isSelected('shows')}">
     <a class="navbar-brand" href="#shows" ng-i18next>NAV.SHOWS</a>
   </li>
-  <li ng-class="{'active' : view == 'animations'}">
+  <li ng-class="{'active' : isSelected('animations')}">
     <a class="navbar-brand" href="#animations" ng-i18next>NAV.ANIMATIONS</a>
   </li>
-  <li ng-class="{'active' : view == 'sequences'}">
+  <li ng-class="{'active' : isSelected('sequences')}">
     <a class="navbar-brand" href="#sequences" ng-i18next>NAV.SEQUENCES</a>
   </li>
   <li>

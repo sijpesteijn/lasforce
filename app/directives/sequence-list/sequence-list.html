@@ -1,6 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title" data-ng-i18next>SEQUENCE.LIST.TITLE</h4>
+    <div class="btn-group pull-right">
+      <button class="clickable" ng-click="save()" ng-i18next="[title]SEQUENCE.SAVE"><i class="fa fa-save"></i></button>
+    </div>
   </div>
   <div class="panel-body">
     <ul class="sequence-list list-unstyled">
@@ -10,9 +13,9 @@
           <span ng-show="openAddSequence"><input type="text" ng-model="newSequence" ng-keyup="$event.keyCode == 13 && createSequence()"></span>
         </span>
       </li>
-      <li class="tile clickable" ng-click="setSequence(tile.sequence)"
-          ng-repeat="tile in tiles | orderBy:'-sequence.name'">
-        <span class="tile" ng-class="{'selected': selectedSequence.id == tile.sequence.id}">{{tile.sequence.name}}</span>
+      <li class="tile clickable" ng-click="setSequence(sequence)"
+          ng-repeat="sequence in sequences | orderBy:'-sequence.name'">
+        <span class="tile" ng-class="{'selected': selectedSequence.id == sequence.id}">{{ sequence.name }}</span>
       </li>
     </ul>
   </div>

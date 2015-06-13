@@ -4,6 +4,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   paper.install(window);
   paper.setup('animationEditCanvas');
   var walkerInterval, currentLayer, toolInUse;
+  var layerElements = [];
   $scope.frames = [];
   $scope.frameIndex = 0;
   $scope.currentFrame = 0;
@@ -13,7 +14,8 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   $scope.animation = {
     name: 'A Name',
     framerate: 30,
-    loopCount: 1
+    loopCount: 1,
+    totalFrames: $scope.frames.length
   };
 
   function init() {
@@ -35,6 +37,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
             id: data.metaData.id,
             name: data.metaData.name,
             framerate: data.metaData.frameRate,
+            totalFrames: data.metaData.totalFrames,
             loopCount: data.metaData.loopCount
           };
           angular.forEach(data.layers, function(frame) {
@@ -45,16 +48,18 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
           paper.view.update();
         },
         function(error) {
-
+          throwError('A002', error, status);
         });
     } else {
       $scope.addFrame();
+      $scope.animation.totalFrames = 1;
       project.layers[$scope.currentFrame].visible = true;
       paper.view.update();
     }
+    $scope.layerElements = project.activeLayer.children;
   }
 
-  function lineTool() {
+  function lineTool(objectListener) {
     this.tool = new Tool();
     this.tool.fixedDistance = 50;
     this.drawing = false;
@@ -78,7 +83,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
         event.preventDefault();
         that.drawing = false;
         that.line.remove();
-        that.path.fullySelected = true;
+        objectListener(that.path);
       } else {
         if (that.drawing == false) {
           if (that.path) {
@@ -94,6 +99,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
           }
           if (!that.selectedPoint) {
             that.path = new Path();
+            that.path.name = 'Path';
             that.addToHistory(that.path);
             var point = event.point;
             that.path.add(point);
@@ -101,6 +107,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
             that.path.strokeColor = that.color;
             that.path.strokeWidth = 2;
             that.nextPoint = new Point(event.event.offsetX + 1, event.event.offsetY + 1);
+            that.nextPoint.name = 'Point';
             that.line = new Path.Line(event.point, that.nextPoint);
             that.line.strokeColor = that.color;
             that.line.strokeWidth = 2;
@@ -114,6 +121,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
           that.addToHistory(that.path, that.path.segments[that.path.segments.length-1]);
           that.line.remove();
           that.nextPoint = new Point(event.event.offsetX + 1, event.event.offsetY + 1);
+          that.nextPoint.name = 'Point';
           that.line = new Path.Line(event.point, that.nextPoint);
           that.line.strokeColor = that.color;
           that.line.strokeWidth = 2;
@@ -140,6 +148,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
       this.line.strokeColor = newColor;
       if (this.drawing) {
         this.path = new Path();
+        this.path.name = 'Path';
         this.path.add(this.line.segments[0].point);
         this.path.strokeColor = newColor;
         this.path.strokeWidth = 2;
@@ -176,7 +185,11 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     if (angular.isDefined(newValue)) {
       toolInUse = null;
       if (newValue === 'line') {
-        toolInUse = new lineTool();
+        toolInUse = new lineTool(function(paperObj) {
+          layerElements.push(paperObj);
+          $scope.newElements = layerElements.length;
+          $scope.$apply();
+        });
       }
       if (newValue === 'circle') {
         toolInUse = new circleTool();
@@ -206,11 +219,11 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   }, true);
 
   function getFrameTime() {
-    return (1 / $scope.animation.framerate) * $scope.frames.length * 1000;
+    return (1 / $scope.animation.framerate) * $scope.animation.totalFrames * 1000;
   }
 
   function scrollCurrentFrameIntoView() {
-    if ($scope.frames.length > 10) {
+    if ($scope.animation.totalFrames > 10) {
         $('.frame-list').scrollTop(19 * $scope.currentFrame);
     }
   }
@@ -247,12 +260,17 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
       lasforceAnimation,
     function(data) {
       console.log('Saved: ' + data);
+      $.infoBox({
+        title: "Animation saved",
+        content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+        color: "#296191",
+        iconInfo: "fa fa-thumbs-up bounce animated",
+        timeout: 3000
+      });
+
     },
-    function(data, status) {
-      throw {
-        message: 'Could not save animation',
-        status: status
-      }
+    function(error, status) {
+      throwError('A003', error, status);
     });
 
   };
@@ -269,7 +287,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     project.layers[$scope.currentFrame].visible = false;
     if ($scope.currentFrame == 0) {
       if ($scope.loop)
-        $scope.currentFrame = $scope.frames.length -1;
+        $scope.currentFrame = $scope.animations.totalFrames -1;
     }
     else
       $scope.currentFrame--;
@@ -281,7 +299,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
   $scope.forward = function() {
     if (project.layers.length > $scope.currentFrame)
       project.layers[$scope.currentFrame].visible = false;
-    if ($scope.currentFrame == $scope.frames.length -1) {
+    if ($scope.currentFrame == $scope.animation.totalFrames -1) {
       if ($scope.loop)
         $scope.currentFrame = 0;
       else if ($scope.playing)
@@ -296,7 +314,7 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
 
   $scope.last = function() {
     project.layers[$scope.currentFrame].visible = false;
-    $scope.currentFrame = $scope.frames.length - 1;
+    $scope.currentFrame = $scope.animation.totalFrames - 1;
     project.layers[$scope.currentFrame].visible = true;
     paper.view.update();
     scrollCurrentFrameIntoView();
@@ -328,15 +346,34 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     $scope.loop = !$scope.loop;
   }
 
+  $scope.zoomIn = function () {
+    $scope.zoom = Math.round(($scope.zoom + 0.1) * 10) / 10;
+    paper.view.zoom = $scope.zoom;
+    paper.view.update();
+  };
+
+  $scope.zoomOut = function () {
+    if ($scope.zoom > 0.1) {
+      $scope.zoom = Math.round(($scope.zoom - 0.1) * 10) / 10;
+      paper.view.zoom = $scope.zoom;
+      paper.view.update();
+    }
+  };
+
   $scope.addFrame = function(layer) {
+    var children;
+
     if (toolInUse) {
       toolInUse.onNewFrame();
     }
-    var children;
+
+    $scope.layerElements = [];
     if (project.layers.length > 0)
       children = project.activeLayer.children;
+
     if (project.layers.length > $scope.currentFrame)
       project.layers[$scope.currentFrame].visible = false;
+
     currentLayer = new Layer();
     if ($scope.newFrameCopyChildren && project.layers.length > 1) {
       angular.forEach(children, function(child) {
@@ -354,11 +391,16 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
     currentLayer.visible = true;
     if (angular.isDefined(layer)) {
       angular.forEach(layer.children, function (element) {
-        currentLayer.addChild(paperFactory.createElement(element));
+        var paperObj = paperFactory.createElement(element);
+        currentLayer.addChild(paperObj);
+        layerElements.push(paperObj);
+        $scope.newElements = layerElements.length;
       });
     }
+    //$scope.layerElements.push(currentLayer);
     //currentLayer.activate();
     $scope.frames.push(frame);
+    $scope.animation.totalFrames = $scope.frames.length;
     $scope.currentFrame = frame.index;
     scrollCurrentFrameIntoView();
   };
@@ -380,9 +422,13 @@ app.controller('animationEditCtrl', function($scope, $rootScope, $i18next, $reso
       if ($scope.currentFrame > $scope.frames.length - 1) {
         $scope.currentFrame = $scope.frames.length - 1;
       }
+      $scope.animation.totalFrames = $scope.frames.length;
     }
   };
 
+  $scope.getLayerElements = function() {
+    return layerElements;
+  }
   init();
 });
 

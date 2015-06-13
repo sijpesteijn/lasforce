@@ -19,7 +19,8 @@ var app = angular
     'gridster',
     'jm.i18next',
     'ui.bootstrap',
-    'angularFileUpload'
+    'angularFileUpload',
+    'treeControl'
   ]);
 
 app.config(function ($routeProvider) {
@@ -37,19 +38,41 @@ app.config(function ($routeProvider) {
         templateUrl: 'pages/show_page/show_page.html'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/shows'
       });
   });
 
 app.config(function ($i18nextProvider) {
-    $i18nextProvider.options = {
-        preload: ['en'],
-        useCookie: false,
-        useLocalStorage: false,
-        fallbackLng: 'en',
-        getAsync: false, // als dit niet op false staat worden de vertalingen voor oa. pagination te laat geladen
-        resGetPath: './i18n/locale-__lng__.json'
+  $i18nextProvider.options = {
+    preload: ['en'],
+    useCookie: false,
+    useLocalStorage: false,
+    fallbackLng: 'en',
+    getAsync: false, // als dit niet op false staat worden de vertalingen voor oa. pagination te laat geladen
+    resGetPath: './i18n/locale-__lng__.json'
+  };
+});
+
+app.config(function($provide) {
+  $provide.decorator('$exceptionHandler', ['$delegate','$injector', function($delegate, $injector) {
+    return function(exception, cause) {
+      $delegate(exception, cause);
+      var rootScope = $injector.get('$rootScope');
+      var i18next = $injector.get('$i18next');
+
+      if (exception.name === 'LasForceError') {
+        var message = i18next('ERROR.' + exception.errorCode);
+        $.infoBox({
+          title: message,
+          content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+          color: '#E7110B',
+          sound: 'error',
+          iconInfo: 'fa fa-thumbs-down bounce animated'
+        });
+
+      }
     };
+  }]);
 });
 
 app.factory('settings', function () {

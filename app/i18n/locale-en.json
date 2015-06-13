@@ -49,6 +49,7 @@
     "METADATA": {
       "TITLE": "Properties",
       "FRAMERATE": "Framerate",
+      "TOTAL_FRAMES": "Total frames",
       "LOOPCOUNT": "Loopcount",
       "COLOR": "Color",
       "ELEMENTS": "Elements"
@@ -58,7 +59,8 @@
     "DROP": "Drop animations here to start a new sequence",
     "LIST": {
       "TITLE": "Sequences"
-    }
+    },
+    "SAVE": "Save"
   },
   "DRAW": {
     "RECTANGLE": "Rectangle",
@@ -72,5 +74,20 @@
     "NEW_FRAME": "Frame",
     "NAME": "New name",
     "COPY_ITEMS": "Clone shapes"
+  },
+
+  "LASER": {
+    "ON": "Laser is on",
+    "LOADING": "Loading laser info..."
+  },
+
+  "ERROR": {
+    "A001": "Could not load animations.",
+    "A002": "Could not load animation.",
+    "A003": "Could not save animation.",
+    "L001": "Could not load laser info",
+    "S001": "Could not load sequences.",
+    "S002": "Could not load sequence.",
+    "S003": "Could not save sequence."
   }
 }

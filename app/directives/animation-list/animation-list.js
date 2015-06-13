@@ -7,27 +7,6 @@ app.controller('animationListCtrl', function($scope, $resource, settings, upload
     $scope.selectedAnimation = animation;
   };
 
-  $scope.createAnimation = function() {
-    var animation = {
-      name: $scope.newAnimation
-    };
-    $resource(settings.get('rest.templ.animation-update')).save(
-      null,
-      animation,
-      function(data) {
-        $scope.selectedAnimation = data;
-        $scope.animations.push(data);
-        $scope.openAddAnimation = false;
-        $scope.newAnimation = '';
-      },
-      function(data, status) {
-        throw {
-          message: 'Could not save animation',
-          status: status
-        }
-      });
-  };
-
   $scope.uploadIlda = function() {
     uploadIldaFactory.openUploadFileModal();
   };
@@ -56,6 +35,7 @@ app.directive('animationList', function() {
     restrict: 'E',
     replace: true,
     scope: {
+      draggable: '=',
       cbMouseOver: '&',
       cbMouseOut: '&',
       cbMouseClick: '&'
@@ -69,6 +49,7 @@ app.directive('animation', function() {
     restrict: 'E',
     replace: true,
     scope: {
+      draggable: '=',
       animation: '=',
       cbMouseOver: '&',
       cbMouseOut: '&',
@@ -79,18 +60,22 @@ app.directive('animation', function() {
       function init() {
         if (scope.draggable === true) {
           var options = {
-            revert: true
+            revert: true,
+            cursor: "move",
+            helper: function( event ) {
+              return $( '<div class="dragging">' + scope.animation.name + '</div>' );
+            }
           };
-          options.start = function(event, ui) {
-            element.addClass('timeline-element');
-          };
-          options.stop = function(event, ui) {
-            element.removeClass('timeline-element');
-            console.log('Stopped');
-          };
-          if (angular.isDefined(scope.snapTo)) {
-            options.snap = scope.snapTo;
-          }
+          //options.start = function(event, ui) {
+          //  element.addClass('timeline-element');
+          //};
+          //options.stop = function(event, ui) {
+          //  element.removeClass('timeline-element');
+          //  console.log('Stopped');
+          //};
+          //if (angular.isDefined(scope.snapTo)) {
+          //  options.snap = scope.snapTo;
+          //}
           element.draggable(options);
         }
       }

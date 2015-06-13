@@ -3,6 +3,8 @@
     <h4 class="panel-title" data-ng-i18next>ANIMATION.METADATA.ELEMENTS</h4>
   </div>
   <div class="panel-body draw-tools">
-    BLa
+    <treecontrol class="tree-classic" tree-model="animationElements" on-selection="select(node, selected)" options="treeOptions">
+      <span ng-mouseover="highlightSelection(node)" options="treeOptions">{{ node.label }}</span>
+    </treecontrol>
   </div>
 </div>

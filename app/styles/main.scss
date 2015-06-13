@@ -12,128 +12,125 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
 body {
+  background-color: #797979;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
 .header {
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+  .logo {
+    width: 150px;
+    height: 50px;
   }
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    //    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
-
-.navbar-brand {
-  height: 40px;
-}
-
-.global {
-  background-color: #413A3A;
-  color: #D4A032;
-}
-
-#draw-tools {
-  width: 200px;
 }
 
 .selectedTool {
   color: red;
 }
 
-#CanvasDraw {
-  width: 656px;
-  height: 656px;
-  border: 2px solid dodgerblue;
+.dragging {
+  color: #ffffff;
+  background-color: red;
+}
+
+.animationCanvas {
+  width: 655px;
+  height: 655px;
+  overflow: scroll;
+  float: left;
+  border: 4px solid #ffcf1e;
   background-color: black;
+  -webkit-box-shadow: -10px 13px 20px 3px rgba(255, 227, 33, 0.91);
+  -moz-box-shadow: -10px 13px 20px 3px rgba(255, 227, 33, 0.91);
+  box-shadow: -10px 13px 20px 3px rgba(255, 227, 33, 0.91);
+
+  canvas {
+    width: 655px;
+    height: 655px;
+  }
+}
+
+#laser-info {
+
+  color: #ffffff;
+
+  .off {
+    color: #fe0505;
+  }
+
+  .on {
+    color: #10fd08;
+  }
+}
+
+#animations-page {
+  .animationCanvas {
+    width: 377px;
+    height: 377px;
+  }
 }
 
 #animation-list {
-  width: 200px;
   overflow: scroll;
   height: 640px;
+
+  .odd {
+    background-color: #0b97c4;
+  }
+
+  .even {
+    background-color: rgba(109, 255, 235, 0.91);
+  }
+
+  .selected {
+    background-color: red;
+  }
 }
 
-#canvasAnimationView {
-  width: 700px;
+#sequences-page {
+  .sequenceCanvas {
+    width: 377px;
+    height: 377px;
+    border: 4px solid #ffcf1e;
+    background-color: black;
+    overflow: scroll;
+  }
 }
+
+#sequence-timeline {
+  color: #FFFFFF;
+  background-color: #ffffff;
+  width: 300px;
+  height: 100px;
+  overflow: scroll;
+  //overflow-x: auto;
+  //padding-left: 5px;
+  display: inline;
+
+  .timeline-element {
+    background-color: #7b7dee;
+    float: left;
+    border-right: 1px solid black;
+    text-align: center;
+  }
+
+  .player-controls {
+    color: #000000;
+  }
+}
+//#canvasAnimationView {
+//  width: 700px;
+//}
 
 #canvasDrawView {
   width: 700px;
 }
 
-#CanvasAnimation {
-  width: 656px;
-  height: 656px;
-  border: 2px solid dodgerblue;
-  //background-color: black;
-}
+//#CanvasAnimation {
+//  width: 656px;
+//  height: 656px;
+//  border: 4px solid #ffcf1e;
+//  //background-color: black;
+//}
 
 .frameList {
   height: 640px;
@@ -167,6 +164,15 @@ body {
 
   .pushed {
     background-color: dimgrey;
+  }
+
+  .zoom {
+    float: right;
+    color: #ffffff;
+
+    button {
+      color: #000;
+    }
   }
 }
 
@@ -211,18 +217,6 @@ body {
   }
 }
 
-.animationCanvas {
-  width: 700px;
-  height: 525px;
-
-  canvas {
-    width: 500px;
-    height: 500px;
-    border: 2px solid dodgerblue;
-    background-color: black;
-  }
-}
-
 .sequence-view {
   background: red;
   cursor: e-resize;
@@ -242,4 +236,212 @@ body {
 
 .time-scale-hover {
   background-color: wheat;
+}
+
+/* InfoBox */
+#divInfoBoxes {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+.InfoBox {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  width: 420px;
+  color: white;
+  z-index: 9999;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+.InfoBox:hover {
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.InfoBox .foto {
+  font-size: 50px;
+  position: absolute;
+  left: 17px;
+}
+.InfoBox .textoFull {
+  width: 93%;
+  float: left;
+  padding-left: 20px;
+}
+.InfoBox .textoFoto {
+  width: 78%;
+  margin: 3px 20px 3px 80px;
+  float: left;
+}
+.miniPic {
+  position: absolute;
+  bottom: 8px;
+  right: 9px;
+}
+.miniIcono {
+  height: 100%;
+  font-size: 20px;
+}
+.InfoBox span {
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  display: block;
+  margin: 4px 0;
+}
+.InfoBox p {
+  font-size: 13px;
+  margin-top: 2px;
+}
+/* End of InfoBox */
+/* Mobile Phones */
+@media screen and (max-width: 450px) and (max-width: 767px) {
+  /* InfoBox Responsive */
+  #divInfoBoxes {
+    position: fixed;
+    width: 90%;
+    right: 0;
+    top: 0;
+  }
+  .InfoBox {
+    width: 95%;
+  }
+  .InfoBox:hover {
+    box-shadow: 0px 0px 10px #888888;
+    cursor: pointer;
+  }
+  .InfoBox span {
+    font-size: 16px;
+    /*font-weight:bold;*/
+  }
+  .InfoBox p {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .InfoBox .textoFull {
+    width: 93%;
+    float: left;
+    padding-left: 20px;
+  }
+  .InfoBox .textoFoto {
+    width: 55%;
+    margin: 3px 20px 3px 80px;
+    float: left;
+  }
+  /* End of InfoBox Responsive*/
+}
+
+/* Animations */
+.animated {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-moz-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0);
+  }
+}
+@-o-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -o-transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    -o-transform: translateX(0);
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animated.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  -moz-animation-name: fadeInRight;
+  -o-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+@-webkit-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+  }
+}
+@-moz-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -moz-transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+  }
+}
+@-o-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -o-transform: translateY(0);
+  }
+  40% {
+    -o-transform: translateY(-30px);
+  }
+  60% {
+    -o-transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+.animated.bounce {
+  -webkit-animation-name: bounce;
+  -moz-animation-name: bounce;
+  -o-animation-name: bounce;
+  animation-name: bounce;
 }

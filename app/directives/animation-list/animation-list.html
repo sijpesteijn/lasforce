@@ -1,24 +1,21 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title" data-ng-i18next>ANIMATION.LIST.TITLE</h4>
+
+    <div class="btn-group pull-right">
+      <button>
+        <a href="#create_animation"><i class="fa fa-plus"></i></a>
+      </button>
+      <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
+    </div>
   </div>
   <div class="panel-body">
     <ul class="animation-list list-unstyled">
-      <li>
-        <span class="tile-add">
-          <span ng-hide="openAddAnimation"><button ng-click="openAddAnimation = true"><i class="fa fa-plus"></i>
-          </button></span>
-          <span ng-show="openAddAnimation"><input type="text" ng-model="newAnimation"
-                                                  ng-keyup="$event.keyCode == 13 && createAnimation()"></span>
-        </span>
-        <span class="tile-upload">
-          <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
-        </span>
-      </li>
       <li class="tile clickable" data-ng-repeat="animation in animations | orderBy:'-name'"
-          data-ng-click="cbMouseClick({animationId:animation.id})" data-ng-mouseover="cbMouseOver({animationId:animation.id})"
+          data-ng-click="cbMouseClick({animationId:animation.id})"
+          data-ng-mouseover="cbMouseOver({animationId:animation.id})"
           data-ng-mouseout="cbMouseOut({animationId:animation.id})">
-        <animation animation="animation"></animation>
+        <animation animation="animation" draggable="draggable" data-ng-class-odd="'odd'" data-ng-class-even="'even'"></animation>
       </li>
     </ul>
   </div>

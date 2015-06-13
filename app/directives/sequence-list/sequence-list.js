@@ -1,17 +1,7 @@
 'use strict';
 
 app.controller('sequenceListCtrl', function($scope, $resource, settings) {
-  $scope.tiles = [];
-  $scope.sequenceListGrid = {
-    margins: [20, 20],
-    columns: 12,
-    draggable: {
-      handle: 'h3'
-    },
-    resizable: {
-      enabled: false
-    }
-  };
+  $scope.sequences = [];
 
   $scope.setSequence = function(sequence) {
     $scope.selectedSequence = sequence;
@@ -26,20 +16,12 @@ app.controller('sequenceListCtrl', function($scope, $resource, settings) {
       sequence,
       function(data) {
         $scope.selectedSequence = data;
-        var tile = {
-          sequence: data,
-          sizeX: 2,
-          sizeY: 2
-        }
-        $scope.tiles.push(tile);
+        $scope.sequences.push(data);
         $scope.openAddSequence = false;
         $scope.newSequence = '';
       },
-      function(data, status) {
-        throw {
-          message: 'Could not save sequence',
-          status: status
-        }
+      function(error, status) {
+        throwError('S003', error, status);
       });
   };
 
@@ -48,24 +30,27 @@ app.controller('sequenceListCtrl', function($scope, $resource, settings) {
       null,
       function(data) {
         angular.forEach(data, function(sequence) {
-          var tile = {
-            sequence: sequence,
-            sizeX: 2,
-            sizeY: 2
-          }
-          $scope.tiles.push(tile);
+          $scope.sequences.push(sequence);
         });
-        if ($scope.tiles.length > 0) {
-          $scope.selectedSequence = $scope.tiles[0].sequence;
+        if ($scope.sequences.length > 0) {
+          $scope.selectedSequence = $scope.sequences[0];
         }
       },
-      function(data, status) {
-        throw {
-          message: 'Could not collect sequences from server',
-          status: status
-        }
+      function(error, status) {
+        throwError('S001', error, status);
       });
   }
+
+  $scope.save = function() {
+    $resource(settings.get('rest.templ.sequence-update')).save(
+      null,
+      $scope.selectedSequence,
+      function(data) {
+      },
+      function(error, status) {
+        throwError('S003', error, status);
+      });
+  };
 
   init();
 });

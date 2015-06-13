@@ -222,11 +222,13 @@ app.factory('paperFactory', function() {
       }
       if (element.type === 'Path') {
         var path = new paper.Path();
+        path.name = 'Path';
         var color = new Color(element.strokeColor.red, element.strokeColor.green, element.strokeColor.blue);
         path.strokeColor = color;
         path.strokeWidth = 2; //element.strokeWidth;
         angular.forEach(element.segments, function(segment) {
-          var point = new Point(segment.x, segment.y);
+          var point = new Segment(segment.x, segment.y);
+          point.name = 'Point';
           path.add(point);
         });
         path.closed = element.closed;
@@ -256,7 +258,7 @@ app.factory('paperFactory', function() {
         return pointText;
       }
 
-  }
+  };
 
   return {
     createElement: function(element) {

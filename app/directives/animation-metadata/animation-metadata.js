@@ -24,6 +24,10 @@ app.controller('animationMetadataCtrl', function($scope) {
     loopCount.val($scope.animation.loopCount);
   }
 
+  $scope.$watch('animation', function(newValue) {
+    init();
+  });
+
   $scope.toggleInfinitive = function() {
     if ($scope.loopCount == -1) {
       $scope.loopCount = 1;
@@ -50,7 +54,7 @@ app.controller('animationMetadataCtrl', function($scope) {
     $scope.animation.loopCount = loopCount.val();
   };
 
-  init();
+  //init();
 });
 
 app.directive('animationMetadata', function() {

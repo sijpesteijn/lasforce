@@ -1,14 +1,15 @@
-<div claas="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="sequencePageCtrl">
+<div id="sequences-page" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="sequencePageCtrl">
   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
     <sequence-list></sequence-list>
+    <animation-list ng-if="selectedSequence" draggable="true" cb-mouse-over="animationMouseOver(animationId)" cb-mouse-out="animationMouseOut(animationId)"></animation-list>
   </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <animation-view ng-if="selectedSequence" animation-id="selectedAnimationId" auto-play="true" loop-count="-1"></animation-view>
+  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+    <sequence-view></sequence-view>
   </div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <animation-list ng-if="selectedSequence" cb-mouse-over="animationMouseOver(animationId)" cb-mouse-out="animationMouseOut(animationId)"></animation-list>
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
   </div>
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <sequence-view ng-if="selectedSequence"></sequence-view>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="selectedSequence">
+    <sequence-timeline></sequence-timeline>
+
   </div>
 </div>

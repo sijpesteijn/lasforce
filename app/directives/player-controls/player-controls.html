@@ -5,4 +5,10 @@
   <button ng-click="forward()" data-ng-disabled="playing"><i class="fa fa-step-forward"></i></button>
   <button ng-click="last()" data-ng-disabled="playing"><i class="fa fa-forward"></i></button>
   <button ng-class="{'pushed' : loop}" ng-click="toggleLoop()" data-toggle="button"><i class="fa fa-retweet"></i></button>
+
+  <span class="zoom">
+    {{ getZoom() }} %
+    <button ng-click="zoomOut()" ng-disabled="zoom == 0.1"><i class="fa fa-minus"></i></button>
+    <button ng-click="zoomIn()"><i class="fa fa-plus"></i></button>
+  </span>
 </div>

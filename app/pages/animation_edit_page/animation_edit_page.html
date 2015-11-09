@@ -1,16 +1,15 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-controller="animationEditPageCtrl">
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <draw-tools></draw-tools>
-    <draw-tool-info></draw-tool-info>
-    <animation-elements></animation-elements>
-  </div>
-  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-    <player-controls></player-controls>
-    <animation-edit></animation-edit>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <animation-metadata></animation-metadata>
-    <animation-layers></animation-layers>
-  </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <draw-tools></draw-tools>
+        <frame-elements animation="animation" current-frame-id="current_frame_id"></frame-elements>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+        <animation-canvas zoom="zoom"></animation-canvas>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <player-controls animation="animation" current-frame-id="current_frame_id"></player-controls>
+        <animation-metadata animation="animation"></animation-metadata>
+        <animation-frames animation="animation" current-frame-id="current_frame_id"></animation-frames>
+    </div>
 </div>
 

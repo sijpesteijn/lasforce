@@ -1,14 +1,27 @@
-<div class="player-controls">
-  <button ng-click="rewind()" data-ng-disabled="playing"><i class="fa fa-backward"></i></button>
-  <button ng-click="backward()" data-ng-disabled="playing"><i class="fa fa-step-backward"></i></button>
-  <button ng-click="togglePlay()"><i class="fa fa-play" ng-show="!playing"></i><i class="fa fa-pause" ng-show="playing"></i> </button>
-  <button ng-click="forward()" data-ng-disabled="playing"><i class="fa fa-step-forward"></i></button>
-  <button ng-click="last()" data-ng-disabled="playing"><i class="fa fa-forward"></i></button>
-  <button ng-class="{'pushed' : loop}" ng-click="toggleLoop()" data-toggle="button"><i class="fa fa-retweet"></i></button>
-
-  <span class="zoom">
-    {{ getZoom() }} %
-    <button ng-click="zoomOut()" ng-disabled="zoom == 0.1"><i class="fa fa-minus"></i></button>
-    <button ng-click="zoomIn()"><i class="fa fa-plus"></i></button>
-  </span>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left" data-ng-i18next>PLAYER.TITLE</h4>
+        <div class="btn-group pull-right">
+            <button data-ng-click="toggleStreaming()" data-ng-disabled="!laser.isOn()" data-ng-class="{'pushed' : laser.isStreaming() === true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
+            {{ laser.isStreaming() }}
+        </div>
+    </div>
+    <div class="panel-body player-controls">
+        <button ng-click="player.rewind()" data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="player.isPlaying() || animation.frames.length <= 1"><i class="fa fa-backward"></i></button>
+        <button ng-click="player.backward()" data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="player.isPlaying() || animation.frames.length <= 1"><i class="fa fa-step-backward"></i></button>
+        <button ng-click="player.togglePlay()" data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="animation.frames.length <= 1"><i class="fa fa-play" ng-show="!player.isPlaying()"></i><i
+                class="fa fa-pause"
+                ng-show="player.isPlaying()"></i></button>
+        <button ng-click="player.forward()" data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="player.isPlaying() || animation.frames.length <= 1"><i class="fa fa-step-forward"></i></button>
+        <button ng-click="player.last()" data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="player.isPlaying() || animation.frames.length <= 1"><i class="fa fa-forward"></i></button>
+        <button data-ng-class="{'disabled':animation.frames.length <= 1}"
+                data-ng-disabled="player.isPlaying() || animation.frames.length <= 1" data-ng-class="{'pushed' : loop == true}"
+                ng-click="toggleLoop()" data-toggle="button"><i class="fa fa-retweet"></i>{{loop}}
+        </button>
+    </div>
 </div>

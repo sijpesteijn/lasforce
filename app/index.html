@@ -8,9 +8,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
@@ -31,12 +29,11 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container-fluid">
+<div class="container-fluid" data-ng-controller="mainCtrl">
   <div class="header">
     <navigation></navigation>
     <img src="images/lasforce.png" class="logo">
   </div>
-    <div ng-view></div>
 
   <div class="footer">
 
@@ -53,21 +50,10 @@
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
-<script src="bower_components/modernizr/modernizr.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -77,11 +63,10 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/i18next/i18next.js"></script>
 <script src="bower_components/ng-i18next/dist/ng-i18next.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
 <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
 <script src="bower_components/paper/dist/paper-full.js"></script>
-<script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+<script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
@@ -98,45 +83,54 @@
 <script src="app.js"></script>
 
 <script src="objects/Settings.js"></script>
-<script src="scripts/directives/frameList.js"></script>
-<script src="scripts/directives/player.js"></script>
-<script src="scripts/error.js"></script>
+<!--<script src="scripts/directives/frameList.js"></script>-->
+<!--<script src="scripts/error.js"></script>-->
 
 <!-- Modals -->
 <script src="modals/uploadIlda/uploadIlda.js"></script>
-<script src="modals/settings/settings.js"></script>
+<script src="modals/lasforce-settings/lasforce-settings.js"></script>
 
 <!-- Factories -->
-<script src="factories/paper-factory.js"></script>
+<script src="factories/laser.js"></script>
+<script src="factories/paper-util.js"></script>
+<script src="factories/paper-wrapper.js"></script>
+<script src="factories/tools/line-tool.js"></script>
+<script src="factories/tools/box-tool.js"></script>
+<script src="factories/tools/move-tool.js"></script>
+<script src="factories/tools/tool-factory.js"></script>
 <script src="factories/colpick.js"></script>
+<script src="factories/animation-player.js"></script>
 <script src="factories/history.js"></script>
 
+<!-- Services -->
+<script src="services/laser-info-service.js"></script>
+<script src="services/lasforce-service.js"></script>
+<script src="services/animation-service.js"></script>
+
 <!-- Directives -->
-<!--<script src="directives/animationList/animation.js"></script>-->
 <script src="directives/navigation/navigation.js"></script>
 <script src="directives/animation-canvas/animation-canvas.js"></script>
 <script src="directives/animation-edit/animation-edit.js"></script>
-<script src="directives/animation-elements/animation-elements.js"></script>
 <script src="directives/animation-list/animation-list.js"></script>
+<script src="directives/animation-list-item/animation-list-item.js"></script>
 <script src="directives/animation-frames/animation-frames.js"></script>
 <script src="directives/animation-metadata/animation-metadata.js"></script>
 <script src="directives/animation-view/animation-view.js"></script>
 <script src="directives/draw-tools/draw-tools.js"></script>
-<script src="directives/draw-tool-info/draw-tool-info.js"></script>
-<script src="directives/laser-info/laser-info.js"></script>
+<script src="directives/frame-elements/frame-elements.js"></script>
+<script src="directives/laser-status/laser-status.js"></script>
 <script src="directives/sequence-list/sequence-list.js"></script>
 <script src="directives/sequence-view/sequence-view.js"></script>
 <script src="directives/sequence-timeline/sequence-timeline.js"></script>
 <!--<script src="directives/timeline/timeline.js"></script>-->
 <script src="directives/color-picker/color-picker.js"></script>
-<script src="directives/info/info.js"></script>
 <script src="directives/player-controls/player-controls.js"></script>
 <script src="directives/showList/showList.js"></script>
 <script src="directives/showView/showView.js"></script>
 
 <!-- Views -->
 <script src="pages/animation_edit_page/animation_edit_page.js"></script>
-<script src="pages/animation_page/animation_page.js"></script>
+<script src="pages/animation_collection_page/animation_collection_page.js"></script>
 <script src="pages/sequence_page/sequence_page.js"></script>
 <script src="pages/show_page/show_page.js"></script>
 

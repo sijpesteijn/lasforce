@@ -1,8 +1,5 @@
 app.controller('framelistCtrl', function ($scope, $rootScope) {
-    $rootScope.$watch('currentFrame', function (currentFrame) {
-        console.log('Frame list currentFrame: ' + currentFrame);
-        $scope.currentFrame = currentFrame;
-    });
+
 });
 
 app.directive('framelist', function ($rootScope) {

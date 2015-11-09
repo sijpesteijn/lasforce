@@ -22,11 +22,11 @@ app.controller('sequenceViewCtrl', function($scope, $resource, settings, paperFa
           {id: timelineElement.animationId},
           function (data) {
             timelineElement.animation = {
-              id: data.metaData.id,
-              name: data.metaData.name,
-              framerate: data.metaData.frameRate,
-              totalFrames: data.metaData.totalFrames,
-              loopCount: data.metaData.loopCount,
+              id: data.metadata.id,
+              name: data.metadata.name,
+              framerate: data.metadata.frameRate,
+              totalFrames: data.metadata.totalFrames,
+              loopCount: data.metadata.loopCount,
               layers: data.layers
             };
             $scope.toLoad--;

@@ -21,7 +21,7 @@ app.controller('colorpickerCtrl', function ($rootScope, $scope) {
   .directive('colorpicker', function () {
 
     return {
-      templateUrl: '/directives/color-picker/color-picker.html',
+      templateUrl: 'directives/color-picker/color-picker.html',
       controller: 'colorpickerCtrl',
       restrict: 'E',
       replace: true,

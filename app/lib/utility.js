@@ -1,11 +1,9 @@
-
-function throwError(code, error, status) {
-  throw {
-    status: status,
-    errorCode: code,
-    time: moment(),
-    name: 'LasForceError',
-    error: error
-  };
+function throwError(errorCode, error) {
+    throw {
+        errorCode: errorCode,
+        time: new Date(),
+        name: 'LasForceError',
+        error: error
+    };
 
 }

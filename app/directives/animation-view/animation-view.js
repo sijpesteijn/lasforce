@@ -1,18 +1,15 @@
 'use strict';
 
-app.controller('animationViewCtrl', function ($scope, $http, $resource, $interval, paperFactory, settings) {
-  var viewWindow, autoplayInterval;
-  $scope.currentFrame = 0;
+app.controller('animationViewCtrl', function ($scope, $http, $resource, $interval, paperWrapper, settings) {
+  var autoplayInterval;
+  $scope.current_frame_id = 0;
   $scope.autoPlay = angular.isUndefined($scope.autoPlay) ? true : $scope.autoPlay;
   $scope.loopCount = angular.isUndefined($scope.loopCount) ? -1 : $scope.loopCount;
   $scope.zoom = 0.009;
 
-  function init() {
-    var canvas = $('#animationCanvas');
-    viewWindow = new paper.Rectangle(2, 2, canvas.width() - 4, canvas.height() - 4);
-    paper.install(window);
-    paper.setup('animationCanvas');
-  }
+  $scope.init = function() {
+    paperWrapper.setup('animationCanvas');
+  };
 
   function stop() {
     $interval.cancel(autoplayInterval);
@@ -27,7 +24,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
     $scope.name = '';
     $scope.frameRate = 0;
     $scope.frameTime = 0;
-    $scope.currentFrame = 0;
+    $scope.current_frame_id = 0;
   }
 
   function getFrameTime() {
@@ -39,14 +36,14 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
       stopAndClear();
     }
     $scope.loading = true;
-    $resource(settings.get('rest.templ.animation-load-ilda')).get(
+    $resource(settings.get('rest.templ.animation')).get(
       {id: animationId},
       function (data) {
         $scope.loading = false;
-        $scope.currentFrame = 0;
+        $scope.current_frame_id = 0;
         $scope.totalFrames = data.layers.length;
-        $scope.name = data.metaData.name;
-        $scope.framerate = data.metaData.framerate;
+        $scope.name = data.metadata.name;
+        $scope.framerate = data.metadata.framerate;
         project.clear();
         angular.forEach(data.layers, function (layer) {
           var paperLayer = new Layer();
@@ -57,7 +54,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
             paperLayer.addChild(paperFactory.createElement(element));
           });
         });
-        project.layers[$scope.currentFrame].visible = true;
+        project.layers[$scope.current_frame_id].visible = true;
         paper.view.update();
         //paper.view.zoom = $scope.zoom;
         if ($scope.autoPlay) {
@@ -65,7 +62,7 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
           $scope.frameTime = getFrameTime();
           $interval.cancel(autoplayInterval);
           autoplayInterval = $interval(function () {
-            project.layers[$scope.currentFrame].visible = false;
+            project.layers[$scope.current_frame_id].visible = false;
             project.layers[getNextFrameNr()].visible = true;
             paper.view.update();
           }, $scope.frameTime);
@@ -81,20 +78,20 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
   }
 
   function getNextFrameNr() {
-    if ($scope.currentFrame !== $scope.totalFrames - 1) {
-      $scope.currentFrame++;
+    if ($scope.current_frame_id !== $scope.totalFrames - 1) {
+      $scope.current_frame_id++;
     } else {
       if ($scope.loopCount == -1 || $scope.loopCount > 0) {
         $scope.loopCount > 0 ? $scope.loopCount-- : -1; // decrement loopCount if > 0
         if ($scope.loopCount == 0) {
           stop();
         }
-        $scope.currentFrame = 0;
+        $scope.current_frame_id = 0;
       } else {
         stop();
       }
     }
-    return $scope.currentFrame;
+    return $scope.current_frame_id;
   }
 
   $scope.$watch('animationId', function (animationId) {
@@ -111,12 +108,12 @@ app.controller('animationViewCtrl', function ($scope, $http, $resource, $interva
     $interval.cancel(autoplayInterval);
   });
 
-  init();
+  $scope.init();
 });
 
 app.directive('animationView', function () {
   return {
-    templateUrl: '/directives/animation-view/animation-view.html',
+    templateUrl: 'directives/animation-view/animation-view.html',
     restrict: 'E',
     replace: true,
     controller: 'animationViewCtrl',

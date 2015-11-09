@@ -1,21 +1,18 @@
 'use strict';
 
-app.controller('drawToolsCtrl', function($scope, colpick) {
+app.controller('drawToolsCtrl', function ($scope, history, toolFactory) {
+    $scope.history = history;
+    $scope.tools = toolFactory.getTools();
 
-  $scope.setTool = function(tool) {
-    $scope.selectedTool = tool;
-  };
-
-  $scope.openColorPick = function(identifier) {
-    colpick.openColorPick(identifier, 'white');
-
-  }
+    $scope.setTool = function(tool_name) {
+        $scope.current_tool_name = tool_name;
+    }
 });
 
-app.directive('drawTools', function() {
-  return {
-    templateUrl: '/directives/draw-tools/draw-tools.html',
-    controller: 'drawToolsCtrl',
-    replace: true
-  }
+app.directive('drawTools', function () {
+    return {
+        templateUrl: 'directives/draw-tools/draw-tools.html',
+        controller: 'drawToolsCtrl',
+        replace: true
+    }
 });

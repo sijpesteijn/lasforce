@@ -1,21 +1,21 @@
 <ul class="nav nav-pills pull-right">
-  <li>
-    <laser-info></laser-info>
-  </li>
+  <!--<li>-->
+    <!--<laser-info></laser-info>-->
+  <!--</li>-->
   <li ng-class="{'active' : isSelected('create_animation')}">
-    <a class="navbar-brand" href="#create_animation" ng-i18next>NAV.CREATE_ANIMATION</a>
+    <a class="navbar-brand" href="#create_animation" ng-i18next>NAV.EDIT_ANIMATION</a>
   </li>
   <li ng-class="{'active' : isSelected('shows')}">
-    <a class="navbar-brand" href="#shows" ng-i18next>NAV.SHOWS</a>
+    <a class="navbar-brand" href="#show_collection" ng-i18next>NAV.SHOWS</a>
   </li>
   <li ng-class="{'active' : isSelected('animations')}">
-    <a class="navbar-brand" href="#animations" ng-i18next>NAV.ANIMATIONS</a>
+    <a class="navbar-brand" href="#animation_collection" ng-i18next>NAV.ANIMATIONS</a>
   </li>
   <li ng-class="{'active' : isSelected('sequences')}">
-    <a class="navbar-brand" href="#sequences" ng-i18next>NAV.SEQUENCES</a>
+    <a class="navbar-brand" href="#sequence_collection" ng-i18next>NAV.SEQUENCES</a>
   </li>
   <li>
-    <a class="navbar-brand" href="#" ng-click="uploadIlda();">Upload ILDA file</a>
+    <a class="navbar-brand" href="" ng-click="uploadIlda();">Upload ILDA file</a>
   </li>
   <li>
     <div class="navbar-brand" style="padding-top: 5px;">
@@ -23,3 +23,4 @@
     </div>
   </li>
 </ul>
+<div ng-view></div>

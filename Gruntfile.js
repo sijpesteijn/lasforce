@@ -24,6 +24,15 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    html2js: {
+      options: {
+        // custom options, see below
+      },
+      main: {
+        src: ['app/directives/**/*.html'],
+        dest: 'tmp/templates.js'
+      },
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -390,6 +399,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-html2js');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -421,6 +431,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'html2js',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

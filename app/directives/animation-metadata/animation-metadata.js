@@ -1,66 +1,68 @@
 'use strict';
 
-app.controller('animationMetadataCtrl', function($scope) {
-  var framerate, loopCount;
+app.controller('animationMetadataCtrl', function ($scope, $resource, settings, paperWrapper) {
+    var framerate;
 
-  function init() {
-    framerate = $('#framerate').spinner({
-      spin: function( event, ui ) {
-        $scope.animation.framerate = this.value;
-      },
-      change: function( event, ui ) {
-        $scope.animation.framerate = this.value;
-      }
-    });
-    framerate.val($scope.animation.framerate);
-    loopCount = $('#loopCount').spinner({
-      spin: function( event, ui ) {
-        $scope.animation.loopCount = this.value;
-      },
-      change: function( event, ui ) {
-        $scope.animation.loopCount = this.value;
-      }
-    });
-    loopCount.val($scope.animation.loopCount);
-  }
-
-  $scope.$watch('animation', function(newValue) {
-    init();
-  });
-
-  $scope.toggleInfinitive = function() {
-    if ($scope.loopCount == -1) {
-      $scope.loopCount = 1;
-      loopCount.spinner('enable');
-    } else {
-      $scope.loopCount = -1;
-      loopCount.spinner('disable');
+    function init() {
+        framerate = $('#framerate').spinner({
+            spin: function (event, ui) {
+                $scope.animation.metadata.framerate = this.value;
+            },
+            change: function (event, ui) {
+                $scope.animation.metadata.framerate = this.value;
+            }
+        });
+        framerate.val($scope.animation.metadata.framerate);
     }
-  };
 
-  $scope.$watch('animation.framerate', function(newValue) {
-    framerate.val(newValue);
-  });
+    $scope.save = function () {
+        var layers = paperWrapper.getObjectTree();
+        $scope.animation.frames = layers;
+        $resource(settings.get('rest.templ.animationSave')).save(
+            null,
+            $scope.animation,
+            function (data) {
+                console.log('Saved: ' + data);
+                $.infoBox({
+                    title: "Animation saved",
+                    content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+                    color: "#296191",
+                    iconInfo: "fa fa-thumbs-up bounce animated",
+                    timeout: 3000
+                });
 
-  $scope.$watch('animation.loopCount', function(newValue) {
-    loopCount.val(newValue);
-  });
+            },
+            function (error, status) {
+                throwError('A003', error, status);
+            });
 
-  $scope.updateFramerate = function() {
-    $scope.animation.framerate = framerate.val();
-  };
+    };
 
-  $scope.updateLoopCount = function() {
-    $scope.animation.loopCount = loopCount.val();
-  };
+    $scope.$watch('animation', function (newValue) {
+        if (angular.isDefined($scope.animation)) {
+            init();
+        }
+    });
 
-  //init();
+    $scope.$watch('animation.metadata.framerate', function (newValue) {
+        if (angular.isDefined(newValue))
+            framerate.val(newValue);
+    });
+
+    $scope.updateFramerate = function () {
+        $scope.animation.metadata.framerate = framerate.val();
+    };
+
+    //init();
 });
 
-app.directive('animationMetadata', function() {
-  return {
-    templateUrl: '/directives/animation-metadata/animation-metadata.html',
-    controller: 'animationMetadataCtrl',
-    replace: true
-  }
+app.directive('animationMetadata', function () {
+    return {
+        templateUrl: 'directives/animation-metadata/animation-metadata.html',
+        controller: 'animationMetadataCtrl',
+        replace: true,
+        scope: {
+            animation: '='
+        }
+    }
 });

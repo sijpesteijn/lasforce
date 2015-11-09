@@ -1,22 +1,24 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title" data-ng-i18next>ANIMATION.LIST.TITLE</h4>
-
-    <div class="btn-group pull-right">
-      <button>
-        <a href="#create_animation"><i class="fa fa-plus"></i></a>
-      </button>
-      <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
+<div class="panel panel-default animation-list-panel">
+    <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left" data-ng-i18next>ANIMATION.LIST.TITLE</h4>
+        <div class="btn-group pull-right">
+            <button>
+                <a href="#create_animation"><i class="fa fa-plus"></i></a>
+            </button>
+            <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
+            <button data-ng-click="toggleLaserOutput()" data-ng-class="{'pushed' : loop == true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
+        </div>
     </div>
-  </div>
-  <div class="panel-body">
-    <ul class="animation-list list-unstyled">
-      <li class="tile clickable" data-ng-repeat="animation in animations | orderBy:'-name'"
-          data-ng-click="cbMouseClick({animationId:animation.id})"
-          data-ng-mouseover="cbMouseOver({animationId:animation.id})"
-          data-ng-mouseout="cbMouseOut({animationId:animation.id})">
-        <animation animation="animation" draggable="draggable" data-ng-class-odd="'odd'" data-ng-class-even="'even'"></animation>
-      </li>
-    </ul>
-  </div>
+    <div class="panel-body">
+        <ul class="animation-list list-unstyled">
+            <li class="tile clickable" data-ng-repeat="animation in animations | orderBy:'-name'">
+                <i class="fa fa-trash " class="clickable"
+                   data-ng-click="removeAnimation(animation.id)"></i>
+                <animation-list-item data-ng-click="cbMouseClick({id:animation.id})"
+                                     data-ng-mouseover="cbMouseOver({id:animation.id})"
+                                     data-ng-mouseout="cbMouseOut({id:animation.id})" animation="animation" draggable="draggable" data-ng-class-odd="'odd'"
+                                     data-ng-class-even="'even'"></animation-list-item>
+            </li>
+        </ul>
+    </div>
 </div>

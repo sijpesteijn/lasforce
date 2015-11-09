@@ -2,23 +2,22 @@
     "settings": {
         "rest": {
             "base": {
-                "laser": "http://localhost:7070/laser/rest"
+                "laser": "/lasforce/rest"
             },
             "templ": {
-                "login": "$t(settings.rest.base.laser)/login",
+                "laser": "ws://localhost:7070/lasforce/ws/laser",
 
                 "animation-list": "$t(settings.rest.base.laser)/animations/:id",
                 "animation-update": "$t(settings.rest.base.laser)/animations/:animation",
-                "laser": "$t(settings.rest.base.laser)/laser/",
                 "sequence-list": "$t(settings.rest.base.laser)/sequences/:id",
                 "sequence-update": "$t(settings.rest.base.laser)/sequences/:sequence",
-                "animation-load-ilda": "$t(settings.rest.base.laser)/animations/:id/data",
+                "lasforceanimation": "$t(settings.rest.base.laser)/animations/:id/data",
                 "show-list": "$t(settings.rest.base.laser)/shows/:id",
                 "show-update": "$t(settings.rest.base.laser)/shows/:show",
                 "ilda-settings": "$t(settings.rest.base.laser)/settings",
 
-                "animation": "$t(settings.rest.base.laser)/animations",
-                "animationUpload": "$t(settings.rest.templ.animation)/upload",
+                "login": "$t(settings.rest.base.laser)/login",
+                "animationUpload": "$t(settings.rest.base.laser)/animations/upload",
                 "animationSave": "$t(settings.rest.templ.animation)/save",
                 "animationList": "$t(settings.rest.templ.animation)/list"
             }

@@ -11,7 +11,7 @@ app.directive('player', function ($rootScope, $i18next) {
         controller: 'playerCtrl',
         link: function (scope, element, attrs) {
             scope.playing = false;
-            $rootScope.currentFrame = 0;
+            $rootScope.current_frame_id = 0;
             $rootScope.currentFrameName = $i18next('DRAW.NEW_FRAME') + ' 1';
             var play;
             var delay = 300;
@@ -21,9 +21,9 @@ app.directive('player', function ($rootScope, $i18next) {
             $rootScope.$watch('selectFrameIndex', function (selectFrameIndex) {
                 if (selectFrameIndex != undefined) {
                     console.log('Player selectFrameIndex: ' + selectFrameIndex);
-                    project.layers[$rootScope.currentFrame].visible = false;
-                    $rootScope.currentFrame = selectFrameIndex;
-                    project.layers[$rootScope.currentFrame].visible = true;
+                    project.layers[$rootScope.current_frame_id].visible = false;
+                    $rootScope.current_frame_id = selectFrameIndex;
+                    project.layers[$rootScope.current_frame_id].visible = true;
                     paper.view.draw();
                 }
             });
@@ -82,20 +82,20 @@ app.directive('player', function ($rootScope, $i18next) {
             scope.firstFrame = function() {
                 setNrOfFrames();
                 console.log('Moving to first frame of animation');
-                project.layers[$rootScope.currentFrame].visible = false;
-                $rootScope.currentFrame = 0;
-                project.layers[$rootScope.currentFrame].visible = true;
-                $rootScope.currentFrameName = project.layers[$rootScope.currentFrame].name;
+                project.layers[$rootScope.current_frame_id].visible = false;
+                $rootScope.current_frame_id = 0;
+                project.layers[$rootScope.current_frame_id].visible = true;
+                $rootScope.currentFrameName = project.layers[$rootScope.current_frame_id].name;
                 paper.view.draw();
             }
 
             scope.previousFrame = function() {
                 setNrOfFrames();
                 console.log('Moving to previous frame of animation');
-                project.layers[$rootScope.currentFrame--].visible = false;
+                project.layers[$rootScope.current_frame_id--].visible = false;
                 checkFrameNr();
-                project.layers[$rootScope.currentFrame].visible = true;
-                $rootScope.currentFrameName = project.layers[$rootScope.currentFrame].name;
+                project.layers[$rootScope.current_frame_id].visible = true;
+                $rootScope.currentFrameName = project.layers[$rootScope.current_frame_id].name;
                 paper.view.draw();
             }
 
@@ -111,10 +111,10 @@ app.directive('player', function ($rootScope, $i18next) {
             function animate() {
                 setNrOfFrames();
                 console.log('Moving to next frame of animation');
-                project.layers[$rootScope.currentFrame++].visible = false;
+                project.layers[$rootScope.current_frame_id++].visible = false;
                 checkFrameNr();
-                project.layers[$rootScope.currentFrame].visible = true;
-                $rootScope.currentFrameName = project.layers[$rootScope.currentFrame].name;
+                project.layers[$rootScope.current_frame_id].visible = true;
+                $rootScope.currentFrameName = project.layers[$rootScope.current_frame_id].name;
                 $rootScope.$apply();
                 paper.view.draw();
             }
@@ -128,20 +128,20 @@ app.directive('player', function ($rootScope, $i18next) {
             scope.nextFrame = function() {
                 setNrOfFrames();
                 console.log('Moving to next frame of animation');
-                project.layers[$rootScope.currentFrame++].visible = false;
+                project.layers[$rootScope.current_frame_id++].visible = false;
                 checkFrameNr();
-                project.layers[$rootScope.currentFrame].visible = true;
-                $rootScope.currentFrameName = project.layers[$rootScope.currentFrame].name;
+                project.layers[$rootScope.current_frame_id].visible = true;
+                $rootScope.currentFrameName = project.layers[$rootScope.current_frame_id].name;
                 paper.view.draw();
             }
 
             scope.lastFrame = function() {
                 setNrOfFrames();
                 console.log('Moving to last frame of animation');
-                project.layers[$rootScope.currentFrame].visible = false;
-                $rootScope.currentFrame = nrOfFrames -1;
-                project.layers[$rootScope.currentFrame].visible = true;
-                $rootScope.currentFrameName = project.layers[$rootScope.currentFrame].name;
+                project.layers[$rootScope.current_frame_id].visible = false;
+                $rootScope.current_frame_id = nrOfFrames -1;
+                project.layers[$rootScope.current_frame_id].visible = true;
+                $rootScope.currentFrameName = project.layers[$rootScope.current_frame_id].name;
                 paper.view.draw();
             }
 
@@ -150,11 +150,11 @@ app.directive('player', function ($rootScope, $i18next) {
             }
 
             function checkFrameNr() {
-                if ($rootScope.currentFrame < 0) {
-                    $rootScope.currentFrame = nrOfFrames;
+                if ($rootScope.current_frame_id < 0) {
+                    $rootScope.current_frame_id = nrOfFrames;
                 }
-                if ($rootScope.currentFrame == nrOfFrames) {
-                    $rootScope.currentFrame = 0;
+                if ($rootScope.current_frame_id == nrOfFrames) {
+                    $rootScope.current_frame_id = 0;
                 }
             }
         }

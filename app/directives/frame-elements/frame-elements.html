@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title" data-ng-i18next>ANIMATION.METADATA.ELEMENTS</h4>
+    </div>
+    <div class="panel-body frame-elements">
+        <treecontrol class="tree-classic" tree-model="model" options="treeOptions" expand-level="1">
+            <span ng-mouseover="highlightSelection($event, node)" data-ng-mouseout="clearSelection($event, node)"
+                  data-ng-click="select($event, node)" data-ng-show="!node.shape.edit" options="treeOptions">{{ node.name }}</span>
+            <i class="fa fa-edit" data-ng-click="editNode($event, node)" data-ng-show="!node.shape.edit"></i>
+            <i class="fa fa-trash" data-ng-click="deleteNode($event, node)" data-ng-show="!node.shape.edit"></i>
+            <input type="text" class="form-control" data-ng-show="node.shape.edit" data-ng-model="node.name"
+                   data-ng-keyup="$event.keyCode == 13 && saveNode($event, node)">
+        </treecontrol>
+    </div>
+</div>

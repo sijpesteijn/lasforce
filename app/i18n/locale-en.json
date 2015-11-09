@@ -7,9 +7,12 @@
   },
   "NAV": {
     "SHOWS": "Shows",
-    "CREATE_ANIMATION": "Create Animation",
+    "EDIT_ANIMATION": "Edit Animation",
     "ANIMATIONS": "Animations",
     "SEQUENCES": "Sequences"
+  },
+  "PLAYER": {
+    "TITLE": "Player"
   },
   "SETTINGS": {
     "TITLE": "Settings",
@@ -71,16 +74,18 @@
     "LINE": "Line",
     "TEXT": "Text",
     "SAVE": "Save",
-    "NEW_FRAME": "Frame",
+    "NEW_FRAME": {
+      "CREATE": "New frame",
+      "COPY_CHILDREN": "Copy children"
+    },
     "NAME": "New name",
     "COPY_ITEMS": "Clone shapes"
   },
-
   "LASER": {
     "ON": "Laser is on",
+    "OFF": "Laser is off",
     "LOADING": "Loading laser info..."
   },
-
   "ERROR": {
     "A001": "Could not load animations.",
     "A002": "Could not load animation.",
@@ -88,6 +93,7 @@
     "L001": "Could not load laser info",
     "S001": "Could not load sequences.",
     "S002": "Could not load sequence.",
-    "S003": "Could not save sequence."
+    "S003": "Could not save sequence.",
+    "N001": "Could not load lasforce settings. Loaded defaults"
   }
 }

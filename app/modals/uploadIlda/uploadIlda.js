@@ -76,12 +76,11 @@ app.factory('uploadIldaFactory', function ($modal) {
       templateUrl: '/modals/uploadIlda/uploadIlda.html',
       controller: 'uploadIldaCtrl'
     });
-  }
+  };
 
   return {
     openUploadFileModal: function () {
       return openUploadFileModal();
     }
   };
-
-})
+});

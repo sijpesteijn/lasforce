@@ -1,55 +1,97 @@
 {
-    "MAIN" :
-    {
-        "OK" : "Ok",
-        "SAVE" : "Opslaan",
-        "CANCEL" : "Annuleren",
-        "CLOSE" : "Afsluiten"
-    },
-
-    "NAV": {
-      "SHOWS" : "Shows",
-      "ANIMATIONS": "Animaties",
-      "SEQUENCES": "Sequences"
-    },
-
-    "ERROR" :
-    {
-        "EXCEPTION" : "Error occured - "
-    },
-
+  "MAIN": {
+    "OK": "Ok",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close"
+  },
+  "NAV": {
+    "SHOWS": "Shows",
+    "EDIT_ANIMATION": "Creër Animatie",
+    "ANIMATIONS": "Animations",
+    "SEQUENCES": "Sequences"
+  },
+  "PLAYER": {
+    "TITLE": "Player"
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "COMPANY_NAME": "Companyname"
+  },
+  "UPLOAD_ILDA": {
+    "TITLE": "ILDA file upload",
+    "FILE_NAME": "Select an ilda file",
+    "UPLOAD": "Send"
+  },
+  "TIMELINE_ELEMENT": {
+    "NAME": "Name",
+    "FRAME_NAME": "New name",
+    "LOADING_LIST": "Loading animation list....",
+    "EMPTY_LIST": "No animations.",
     "SETTINGS": {
-        "TITLE" : "Instellingen",
-        "COMPANY_NAME": "Bedrijfsnaam"
-    },
-
-    "UPLOAD_ILDA": {
-        "TITLE" : "ILDA file upload",
-        "FILE_NAME": "Selecteer een ilda file",
-        "UPLOAD": "Verstuur"
-    },
-
-    "TIMELINE_ELEMENT" : {
-        "NAME" : "Name",
-        "FRAME_NAME" : "New name",
-        "LOADING_LIST": "Laden animation lijst....",
-        "EMPTY_LIST" : "Geen animaties.",
-        "SETTINGS" : {
-          "TITLE": "Animatie settings"
-        }
-    },
-
-    "DRAW" : {
-        "RECTANGLE" : "Vierkant",
-        "CIRCLE" : "Cirkel",
-        "PENCIL" : "Potlood",
-        "SELECT" : "Selecteer",
-        "PATH" : "Vrije hand",
-        "LINE" : "Lijn",
-        "TEXT" : "Tekst",
-        "SAVE" : "Opslaan",
-        "NEW_FRAME" : "Frame",
-        "NEW_NAME" : "Nieuwe naam",
-        "COPY_ITEMS" : "Copier vormen"
+      "TITLE": "Animation settings",
+      "FRAMERATE": "Framerate",
+      "LOOP": "Loop"
     }
+  },
+  "ANIMATION": {
+    "EDIT": {
+      "TOOLS": {
+        "TITLE": "Tools",
+        "INFO": {
+          "TITLE": "Tool settings"
+        }
+      }
+    },
+    "FRAMES": {
+      "TITLE": "Frames"
+    },
+    "LIST": {
+      "TITLE": "Animations"
+    },
+    "METADATA": {
+      "TITLE": "Properties",
+      "FRAMERATE": "Framerate",
+      "TOTAL_FRAMES": "Total frames",
+      "LOOPCOUNT": "Loopcount",
+      "COLOR": "Color",
+      "ELEMENTS": "Elementen"
+    }
+  },
+  "SEQUENCE": {
+    "DROP": "Drop animations here to start a new sequence",
+    "LIST": {
+      "TITLE": "Sequences"
+    },
+    "SAVE": "Save"
+  },
+  "DRAW": {
+    "RECTANGLE": "Rectangle",
+    "CIRCLE": "Circle",
+    "PENCIL": "Pencil",
+    "SELECT": "Select",
+    "PATH": "Free hand",
+    "LINE": "Line",
+    "TEXT": "Text",
+    "SAVE": "Save",
+    "NEW_FRAME": "Frame",
+    "NAME": "New name",
+    "COPY_ITEMS": "Clone shapes"
+  },
+
+  "LASER": {
+    "ON": "Laser is on",
+    "OFF": "Laser is off",
+    "LOADING": "Loading laser info..."
+  },
+
+  "ERROR": {
+    "A001": "Could not load animations.",
+    "A002": "Could not load animation.",
+    "A003": "Could not save animation.",
+    "L001": "Could not load laser info",
+    "S001": "Could not load sequences.",
+    "S002": "Could not load sequence.",
+    "S003": "Could not save sequence."
+  }
 }

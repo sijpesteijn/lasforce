@@ -6,18 +6,15 @@
     <!--<div>-->
       <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'circle' }"-->
               <!--ng-click="setTool('circle')" ng-i18next="[title]DRAW.CIRCLE"><i class="fa fa-circle"></i></button>-->
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'line' }"
-              ng-click="setTool('line')" ng-i18next="[title]DRAW.LINE"><i class="fa fa-pencil"></i></button>
+      <button data-ng-repeat="tool in tools" class="clickable" ng-class="{'selectedTool' : current_tool_name == tool.name }"
+              ng-click="setTool(tool.name)" ng-i18next="[title]DRAW.LINE"><i class="fa {{tool.icon}}"></i></button>
       <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'path' }" ng-click="setTool('path')"-->
               <!--ng-i18next="[title]DRAW.PATH"><i class="fa fa-paint-brush"></i></button>-->
-      <colorpicker color-value="selectedColor"></colorpicker>
-      <button class="clickable" ng-class="{'selectedTool' : selectedTool == 'new frame' }"
-              ng-click="addFrame();" ng-i18next="[title]DRAW.NEW_FRAME"><i class="fa fa-bars"></i></button>
-      <button class="clickable" ng-click="save()" ng-i18next="[title]DRAW.SAVE"><i class="fa fa-save"></i></button>
-      <button class="clickable" ng-click="undo()" ng-disabled="!canUndo()" ng-i18next="[title]DRAW.UNDO"><i class="fa fa-undo"></i></button>
-      <button class="clickable" ng-click="redo()" ng-disabled="!canRedo()" ng-i18next="[title]DRAW.REDO"><i class="fa fa-repeat"></i></button>
+      <colorpicker color-value="current_color"></colorpicker>
+      <button class="clickable" ng-click="history.undo()" ng-class="{ 'disabled' : !history.canUndo() }" ng-disabled="!history.canUndo()" ng-i18next="[title]DRAW.UNDO"><i class="fa fa-undo"></i></button>
+      <button class="clickable" ng-click="history.redo()" ng-class="{ 'disabled' : !history.canRedo() }"  ng-disabled="!history.canRedo()" ng-i18next="[title]DRAW.REDO"><i class="fa fa-repeat"></i></button>
 
-    {{getHistoryIndex()}}
+    <!--{{getHistoryIndex()}}-->
       <!--<button class=" clickable" ng-class="{'selectedTool' : selectedTool == 'rectangle' }"-->
               <!--ng-click="setTool('rectangle')" ng-i18next="[title]DRAW.RECTANGLE"><i class="fa fa-cube"></i></button>-->
       <!--<button class="clickable" ng-class="{'selectedTool' : selectedTool == 'circle' }"-->

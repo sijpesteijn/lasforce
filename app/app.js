@@ -23,22 +23,29 @@ var app = angular
     'treeControl'
   ]);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
+    //$locationProvider.html5Mode({
+    //    enabled: true,
+    //    requireBase: false
+    //});
     $routeProvider
-      .when('/animations', {
-        templateUrl: 'pages/animation_page/animation_page.html'
+      .when('/animation_collection', {
+        templateUrl: 'pages/animation_collection_page/animation_collection_page.html'
       })
-      .when('/create_animation', {
+      .when('/edit_animation', {
         templateUrl: 'pages/animation_edit_page/animation_edit_page.html'
       })
-      .when('/sequences', {
+      .when('/edit_animation/:animation_id', {
+        templateUrl: 'pages/animation_edit_page/animation_edit_page.html'
+      })
+      .when('/sequence_collection', {
         templateUrl: 'pages/sequence_page/sequence_page.html'
       })
-      .when('/shows', {
+      .when('/show_collection', {
         templateUrl: 'pages/show_page/show_page.html'
       })
       .otherwise({
-        redirectTo: '/shows'
+        redirectTo: '/edit_animation'
       });
   });
 
@@ -62,9 +69,14 @@ app.config(function($provide) {
 
       if (exception.name === 'LasForceError') {
         var message = i18next('ERROR.' + exception.errorCode);
-        $.infoBox({
+          var error = exception.error;
+          var details = error.data;
+          var start = details.indexOf('<body>') + 6;
+          var end = details.indexOf('</body>');
+          details = details.substring(start, end);
+          $.infoBox({
           title: message,
-          content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+          content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i><span>" + error.status + " : " + error.statusText + "</span>" + details,
           color: '#E7110B',
           sound: 'error',
           iconInfo: 'fa fa-thumbs-down bounce animated'
@@ -106,4 +118,8 @@ app.filter('range', function() {
       input.push(i);
     return input;
   };
+});
+
+app.controller('mainCtrl', function($scope) {
+
 });

@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 $fa-font-path: "/bower_components/font-awesome/fonts";
 @import "font-awesome/scss/font-awesome";
@@ -26,6 +27,27 @@ body {
 .selectedTool {
   color: red;
 }
+
+button.disabled {
+    background-color: #797979;
+}
+
+.frameRateSpinner {
+  width: 16px;
+}
+
+.progress-striped {
+  width: 600px;
+}
+
+.pushed {
+  background-color: dimgrey;
+}
+
+.animation-list-panel {
+  width: 212px;
+}
+
 
 .dragging {
   color: #ffffff;
@@ -157,6 +179,11 @@ body {
 
 .frame-list {
   height: 315px;
+  overflow-y: auto;
+}
+
+.frame-elements {
+  height: 400px;
   overflow-y: auto;
 }
 

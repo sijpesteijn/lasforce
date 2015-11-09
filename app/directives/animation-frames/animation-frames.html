@@ -1,13 +1,25 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title" data-ng-i18next>ANIMATION.FRAMES.TITLE</h4>
-  </div>
-  <div class="panel-body frame-list">
-    <div class="input-group input-group-sm" data-ng-repeat="frame in frames">
-      <span id="frame_{{frame.id}}" class="input-group-addon"><i class="fa fa-edit" data-ng-click="frame.edit = true"></i></span>
-      <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.name" data-ng-keyup="$event.keyCode == 13 && (frame.edit = false)">
-      <span class="clickable form-control" data-ng-click="setCurrentFrame($index)" data-ng-show="!frame.edit" data-ng-class="{'selectedFrame': $index == currentFrame}">{{ frame.name }}</span>
-      <span class="input-group-addon"><i class="fa fa-remove" data-ng-class="{'clickable' : frames.length > 1}" data-ng-click="removeFrame(frame.index)" data-ng-disabled="frames.length == 1"></i></span>
+    <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left" data-ng-i18next>ANIMATION.FRAMES.TITLE</h4>
+        <div class="btn-group pull-right">
+            <button class="clickable" ng-click="addFrame();" ng-i18next="[title]DRAW.NEW_FRAME.CREATE"><i class="fa fa-plus"></i>
+            </button>
+            <input type="checkbox" data-ng-model="new_frame_copy_children"><span data-ng-i18next>DRAW.NEW_FRAME.COPY_CHILDREN</span>
+        </div>
     </div>
-  </div>
+    <div class="panel-body frame-list">
+        <div class="input-group input-group-sm" data-ng-show="frames" data-ng-repeat="frame in frames | orderBy:'id'">
+            <span id="frame_{{frame.id}}" class="input-group-addon"><i class="fa fa-edit"
+                                                                       data-ng-click="frame.edit = true"></i></span>
+
+            <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.name"
+                   data-ng-keyup="$event.keyCode == 13 && (frame.edit = false)">
+            <span class="clickable form-control" data-ng-click="setCurrentFrame(frame.id);" data-ng-show="!frame.edit"
+                  data-ng-class="{'selectedFrame': frame.id == player.getCurrentFrameId() }">{{ frame.name }}</span>
+            <span class="input-group-addon"><i class="fa fa-remove "
+                                               data-ng-class="{'clickable' : animation.frames.length > 1}"
+                                               data-ng-click="removeFrame($index)"
+                                               data-ng-hide="animation.frames.length == 1"></i></span>
+        </div>
+    </div>
 </div>

@@ -82,7 +82,7 @@
   "LASER": {
     "ON": "Laser is on",
     "OFF": "Laser is off",
-    "LOADING": "Loading laser info..."
+    "SOCKET_NOT_CONNECTED": "Can't get laser status"
   },
 
   "ERROR": {

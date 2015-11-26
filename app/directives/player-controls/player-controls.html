@@ -2,7 +2,7 @@
     <div class="panel-heading clearfix">
         <h4 class="panel-title pull-left" data-ng-i18next>PLAYER.TITLE</h4>
         <div class="btn-group pull-right">
-            <button data-ng-click="toggleStreaming()" data-ng-disabled="!laser.isOn()" data-ng-class="{'pushed' : laser.isStreaming() === true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
+            <button data-ng-click="toggleStreaming()" data-ng-disabled="!laser.isSocketConnected() || !laser.isLaserConnected()" data-ng-class="{'pushed' : laser.isStreaming() === true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
             {{ laser.isStreaming() }}
         </div>
     </div>

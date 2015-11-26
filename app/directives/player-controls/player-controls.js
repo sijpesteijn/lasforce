@@ -14,6 +14,9 @@ app.controller('playerControlsCtrl', function ($scope, $interval, animationPlaye
   $scope.toggleStreaming = function () {
     $scope.streaming = !$scope.streaming;
     laser.setStreaming($scope.streaming);
+    if (!$scope.streaming && laser.isSocketConnected() && laser.isLaserConnected()) {
+      laser.blank();
+    }
   };
 
   $scope.$watch('animation.metadata.framerate', function (newVal) {
@@ -36,6 +39,11 @@ app.controller('playerControlsCtrl', function ($scope, $interval, animationPlaye
     }
   }, true);
 
+  $scope.$watch(function() { return animationPlayer.isPlaying();}, function(playing) {
+    if ($scope.streaming && !playing) {
+      laser.blank();
+    }
+  }, true);
 });
 
 app.directive('playerControls', function () {

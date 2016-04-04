@@ -8,15 +8,15 @@
   <div class="panel-body animation-metadata">
     <div class="input-group input-group-sm">
       <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-edit"></i></span>
-      <input type="text" class="form-control" data-ng-model="animation.metadata.name" placeholder="Name" aria-describedby="sizing-addon3">
+      <input type="text" class="form-control" data-ng-model="animation.name" placeholder="Name" aria-describedby="sizing-addon3">
     </div>
-    <div class="input-group input-group-sm">
-      <label for="framerate" data-ng-i18next>ANIMATION.METADATA.FRAMERATE</label>
-      <input id="framerate" data-ng-model="animation.metadata.framerate" ng-keyup="$event.keyCode == 13 && updateFramerate()">
-    </div>
+    <!--<div class="input-group input-group-sm">-->
+      <!--<label for="framerate" data-ng-i18next>ANIMATION.METADATA.FRAMERATE</label>-->
+      <!--<input id="framerate" data-ng-model="animation.metadata.framerate" ng-keyup="$event.keyCode == 13 && updateFramerate()">-->
+    <!--</div>-->
     <div class="input-group input-group-sm">
       <label for="total_frames" data-ng-i18next>ANIMATION.METADATA.TOTAL_FRAMES</label>
-      <span id="total_frames">{{ animation.frames.length }}</span>
+      <span id="total_frames">{{ animation.total_frames }}</span>
     </div>
   </div>
 </div>

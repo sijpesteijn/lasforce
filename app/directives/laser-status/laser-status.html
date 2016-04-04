@@ -1,13 +1,13 @@
 <span id="laser-info">
-  <span ng-if="laserInfo && laserInfo.on">
+  <span ng-if="cntrl.laser && cntrl.laser.isLaserConnected()">
     <i class="on fa fa-3x fa-star-o"></i>
     <span data-ng-i18next>LASER.ON</span>
   </span>
-  <span ng-if="laserInfo && !laserInfo.on">
+  <span ng-if="cntrl.laser && !cntrl.laser.isLaserConnected()">
     <i class="off fa fa-3x fa-star-o"></i>
     <span data-ng-i18next>LASER.OFF</span>
   </span>
-  <span ng-if="!laserInfo">
-    <span data-ng-i18next>LASER.LOADING</span>
+  <span ng-if="!cntrl.laser">
+    <span data-ng-i18next>LASER.CHECKING</span>
   </span>
 </span>

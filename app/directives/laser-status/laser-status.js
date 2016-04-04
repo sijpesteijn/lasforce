@@ -1,32 +1,35 @@
-'use strict';
+(function () {
+  'use strict';
 
-app.controller('laserStatusCtrl', ['$scope' ,'$interval', 'laserStatusService' ,function($scope, $interval, laserStatusService) {
-  $scope.laserStatus;
+  app.controller('laserStatusCtrl', laserStatusCtrl).directive('laserStatus', laserStatusDirective);
 
-  $scope.getLaserStatus = function() {
-    $scope.laserStatus = laserStatusService.get();
-  };
+  laserStatusCtrl.$inject = ['$interval','laser'];
 
-  $scope.saveLaserStatus = function() {
-    $scope.laserStatus = laserStatusService.post($scope.laserStatus);
-  };
+  function laserStatusCtrl($interval, laser) {
+    var delay = 1000, cntrl = this, checked = 0;
+    cntrl.laser = laser;
 
-  function init() {
-    $interval($scope.getLaserStatus, 1000);
+    function connect_status() {
+      if(!cntrl.laser.isLaserConnected()) {
+        cntrl.laser.connectLaser();
+        $interval(function() {
+            connect_status();
+          }, ++checked * 1000);
+      } else {
+        checked = 0;
+      }
+    }
+
+    connect_status();
   }
 
-  $scope.isOn = function() {
-    return $scope.laserStatus.on;
-  };
-
-  init();
-}]);
-
-app.directive('laserStatus', function() {
-  return {
-    templateUrl: '/directives/laser-status/laser-status.html',
-    controller: 'laserStatusCtrl',
-    replace: true,
-    restrict: 'E'
+  function laserStatusDirective() {
+    return {
+      templateUrl: '/directives/laser-status/laser-status.html',
+      controller: 'laserStatusCtrl',
+      controllerAs:'cntrl',
+      replace: true,
+      restrict: 'E'
+    }
   }
-});
+})();

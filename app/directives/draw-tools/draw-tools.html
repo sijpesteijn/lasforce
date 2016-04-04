@@ -13,6 +13,7 @@
       <colorpicker color-value="current_color"></colorpicker>
       <button class="clickable" ng-click="history.undo()" ng-class="{ 'disabled' : !history.canUndo() }" ng-disabled="!history.canUndo()" ng-i18next="[title]DRAW.UNDO"><i class="fa fa-undo"></i></button>
       <button class="clickable" ng-click="history.redo()" ng-class="{ 'disabled' : !history.canRedo() }"  ng-disabled="!history.canRedo()" ng-i18next="[title]DRAW.REDO"><i class="fa fa-repeat"></i></button>
+    <button class="clickable" ng-click="uploadImage()" data-ng-i18next="[title]DRAW.UPLOAD_IMAGE"><i class="fa fa-upload"></i></button>
 
     <!--{{getHistoryIndex()}}-->
       <!--<button class=" clickable" ng-class="{'selectedTool' : selectedTool == 'rectangle' }"-->

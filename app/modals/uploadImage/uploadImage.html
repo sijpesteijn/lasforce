@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h2 class="modal-title" id="titleLabel"><span
+    ng-i18next>UPLOAD_IMAGE.TITLE</span>
+  </h2>
+</div>
+
+<div class="modal-body">
+
+  <div><input id="files" type="file"></div>
+    <span id="options" data-ng-show="loaded">
+        <div id="thresholds"></div>{{options.low_threshold}} - {{ options.high_threshold }}
+        <div id="blurradius"></div>{{options.blur_radius}}
+      </span>
+  <div id="cannyCanvas"><canvas id="imageUpload"></canvas></div>
+  <div id="originalImage"></div>
+  <svg id="svgUpload"></svg>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="close()" ng-i18next>MAIN.CANCEL</button>
+  <button type="button" class="btn btn-default" ng-click="ok()" data-ng-show="loaded" ng-i18next>MAIN.OK</button>
+</div>

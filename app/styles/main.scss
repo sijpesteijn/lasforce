@@ -53,8 +53,23 @@ button.disabled {
 }
 
 
+.uploadImage {
+  .modal-dialog {
+    min-width: 1000px;
+  }
 
-
+  #theimage {
+    max-width: 1310px;
+    max-height: 1310px;
+  }
+  #cannyCanvas {
+    border: 1px solid deepskyblue;
+    canvas {
+      max-width: 1310px;
+      max-height: 1310px;
+    }
+  }
+}
 
 .dragging {
   color: #ffffff;

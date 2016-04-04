@@ -2,6 +2,7 @@
 
 app.factory('paperWrapper', function () {
   var initialized = false;
+  paper.install(window);
 
   function setup(identifier) {
     initialized = false;
@@ -9,7 +10,7 @@ app.factory('paperWrapper', function () {
     //    paper.project.
     //    paper.project.clear();
     //}
-    paper.install(window);
+    paper.clear();
     paper.setup(identifier);
     paper.settings.handleSize = 8;
     initialized = true;
@@ -74,18 +75,17 @@ app.factory('paperWrapper', function () {
       pFrame.name = frame.name;
       pFrame.type = 'frame';
       pFrame.lasforceId = frame.id;
-      pFrame.applyMatrix = frame.applyMatrix;
+      pFrame.applyMatrix = true;
       frame.paperObject = pFrame;
-      if (frame.shapes.length === 0) {
+      if (frame.segments.length === 0) {
         progress += frameStep;
         broadCast(Math.round(progress / 10));
       } else {
-        var shapeStep = Math.round(frameStep / frame.shapes.length);
-        progress += frameStep - (shapeStep * frame.shapes.length);
-        angular.forEach(frame.shapes, function (shape) {
-          var paperObject = createPaperObject(shape);
-          shape.paperObject = paperObject;
-          pFrame.addChild(paperObject);
+        var shapeStep = Math.round(frameStep / frame.segments.length);
+        progress += frameStep - (shapeStep * frame.segments.length);
+        angular.forEach(frame.segments, function (segment) {
+          var path = createPath(segment);
+          pFrame.addChild(path);
           progress += shapeStep;
           broadCast(Math.round(progress / 10));
         });
@@ -94,72 +94,94 @@ app.factory('paperWrapper', function () {
     });
   }
 
-  var createPaperObject = function (paperObjectMetaData) {
-    if (paperObjectMetaData.type === 'line') {
-      var line = new Path.Line({
-        id: paperObjectMetaData.id,
-        name: paperObjectMetaData.name,
-        type: 'path',
-        from: [0, 0],
-        to: [8000, 8000],
-        strokeColor: 'red',
-        strokeWidth: 5
-      });
-      return line;
+  var createPath = function (segment) {
+    var path = new paper.Path();
+    segment.id = path.id;
+    path.name = segment.name;
+    path.type = 'path';
+    var color = new Color(segment.color[0], segment.color[1], segment.color[2]);
+    path.strokeColor = color;
+    //path.selectedColor = 'red';
+    path.strokeWidth = 400;
+    var points = [];
+    for (var i = 0; i < segment.coordinates.length; i++) {
+      var point = new Segment(segment.coordinates[i][0], segment.coordinates[i][1]);
+      points.push(point);
+      path.add(point);
     }
-    if (paperObjectMetaData.type === 'path') {
-      var path = new paper.Path();
-      paperObjectMetaData.id = path.id;
-      path.name = paperObjectMetaData.name;
-      path.type = 'path';
-      var color = new Color(paperObjectMetaData.strokeColor.red, paperObjectMetaData.strokeColor.green, paperObjectMetaData.strokeColor.blue);
-      path.strokeColor = color;
-      path.selectedColor = 'red';
-      path.strokeWidth = 400; //paperObjectMetaData.strokeWidth;
-      angular.forEach(paperObjectMetaData.segments, function (segment) {
-        var point = new Segment(segment.point.x, segment.point.y);
-        segment.id = point.id;
-        segment.paperObject = point;
-        point.name = segment.point.name;
-        path.add(point);
-      });
-      path.closed = paperObjectMetaData.closed;
-      return path;
-    }
-    if (paperObjectMetaData.type === 'point') {
-      var point = new Path.Circle(new Point(paperObjectMetaData.x, paperObjectMetaData.y), 400);
-      var color = new Color(paperObjectMetaData.strokeColor.red, paperObjectMetaData.strokeColor.green, paperObjectMetaData.strokeColor.blue);
-      point.fillColor = color;
-      point.type = 'point';
-      point.selectedColor = 'red';
-      point.strokeWidth = 400;
-      console.log('');
-    }
-    if (paperObjectMetaData.type === 'group') {
-      var group = new paper.Group();
-      group.applyMatrix = child.applyMatrix;
-      var children = [];
-      angular.forEach(paperObjectMetaData.children, function (child) {
-        children.push(createPaperElement(child));
-      });
-      group.children = children;
-      return group;
-    }
-    if (paperObjectMetaData.type === 'pointText') {
-      var pointText = new paper.PointText();
-      pointText.applyMatrix = paperObjectMetaData.applyMatrix;
-      pointText.content = paperObjectMetaData.content;
-      pointText.fillColor = paperObjectMetaData.fillColor;
-      pointText.font = paperObjectMetaData.font;
-      pointText.fontFamily = paperObjectMetaData.fontFamily;
-      pointText.fontSize = paperObjectMetaData.fontSize;
-      pointText.fontWeight = paperObjectMetaData.fontWeight;
-      pointText.leading = paperObjectMetaData.leading;
-      pointText.matrix = paperObjectMetaData.matrix;
-      return pointText;
-    }
-
+    segment.paper = {
+      'path': path,
+      'points': points};
+    path.closed = true;
+    return path;
   };
+
+  //var createPaperObject = function (paperObjectMetaData) {
+  //  if (paperObjectMetaData.type === 'line') {
+  //    var line = new Path.Line({
+  //      id: paperObjectMetaData.id,
+  //      name: paperObjectMetaData.name,
+  //      type: 'path',
+  //      from: [0, 0],
+  //      to: [8000, 8000],
+  //      strokeColor: 'red',
+  //      strokeWidth: 5
+  //    });
+  //    return line;
+  //  }
+  //  if (paperObjectMetaData.type === 'path') {
+  //    var path = new paper.Path();
+  //    paperObjectMetaData.id = path.id;
+  //    path.name = paperObjectMetaData.name;
+  //    path.type = 'path';
+  //    var color = new Color(paperObjectMetaData.strokeColor.red, paperObjectMetaData.strokeColor.green, paperObjectMetaData.strokeColor.blue);
+  //    path.strokeColor = color;
+  //    path.selectedColor = 'red';
+  //    path.strokeWidth = 400; //paperObjectMetaData.strokeWidth;
+  //    angular.forEach(paperObjectMetaData.segments, function (segment) {
+  //      var point = new Segment(segment.point.x, segment.point.y);
+  //      segment.id = point.id;
+  //      segment.paperObject = point;
+  //      point.name = segment.point.name;
+  //      path.add(point);
+  //    });
+  //    path.closed = paperObjectMetaData.closed;
+  //    return path;
+  //  }
+  //  if (paperObjectMetaData.type === 'point') {
+  //    var point = new Path.Circle(new Point(paperObjectMetaData.x, paperObjectMetaData.y), 400);
+  //    var color = new Color(paperObjectMetaData.strokeColor.red, paperObjectMetaData.strokeColor.green, paperObjectMetaData.strokeColor.blue);
+  //    point.fillColor = color;
+  //    point.type = 'point';
+  //    point.selectedColor = 'red';
+  //    point.strokeWidth = 400;
+  //    console.log('');
+  //  }
+  //  if (paperObjectMetaData.type === 'group') {
+  //    var group = new paper.Group();
+  //    group.applyMatrix = child.applyMatrix;
+  //    var children = [];
+  //    angular.forEach(paperObjectMetaData.children, function (child) {
+  //      children.push(createPaperElement(child));
+  //    });
+  //    group.children = children;
+  //    return group;
+  //  }
+  //  if (paperObjectMetaData.type === 'pointText') {
+  //    var pointText = new paper.PointText();
+  //    pointText.applyMatrix = paperObjectMetaData.applyMatrix;
+  //    pointText.content = paperObjectMetaData.content;
+  //    pointText.fillColor = paperObjectMetaData.fillColor;
+  //    pointText.font = paperObjectMetaData.font;
+  //    pointText.fontFamily = paperObjectMetaData.fontFamily;
+  //    pointText.fontSize = paperObjectMetaData.fontSize;
+  //    pointText.fontWeight = paperObjectMetaData.fontWeight;
+  //    pointText.leading = paperObjectMetaData.leading;
+  //    pointText.matrix = paperObjectMetaData.matrix;
+  //    return pointText;
+  //  }
+  //
+  //};
 
   var getPaperObjectMetaData = function (paperObject) {
     var metadata = {
@@ -181,7 +203,7 @@ app.factory('paperWrapper', function () {
       metadata.segments = segments;
     }
     if (paperObject.type === 'frame') {
-      angular.forEach(paperObject.children, function(shape) {
+      angular.forEach(paperObject.children, function (shape) {
         metadata.shapes.push(getPaperObjectMetaData(shape.paperObject));
       });
     }
@@ -246,20 +268,19 @@ app.factory('paperWrapper', function () {
     return selected;
   }
 
-  var toggleSelectPaperObject = function (paperObjectMetaData, select) {
-    paperObjectMetaData.selected = select;
-    if (paperObjectMetaData.type === 'Path') {
+  var toggleSelectPaperObject = function (paperObject, select) {
+    if (paperObject.type === 'path') {
       //var selectedChildren = getSelectedChildren(paperObjectMetaData.paperObject.segments);
-      paperObjectMetaData.paperObject.fullySelected = select;
+      paperObject.fullySelected = select;
       //if (!select && selectedChildren.length > 0) {
       //    angular.forEach(selectedChildren, function(child) {
       //       child.selected = true;
       //    });
       //}
     } else {
-      paperObjectMetaData.paperObject.selected = select;
-      if (!select && angular.isDefined(paperObjectMetaData.parent)) {
-        toggleSelectPaperObject(paperObjectMetaData.parent.paperObjectMetaData, select);
+      paperObject.selected = select;
+      if (!select && angular.isDefined(paperObject.parent)) {
+        toggleSelectPaperObject(paperObject.parent.path, select);
       }
     }
     updateView();

@@ -12,7 +12,7 @@ app.controller('animationMetadataCtrl', function ($scope, $resource, settings, p
                 $scope.animation.metadata.framerate = this.value;
             }
         });
-        framerate.val($scope.animation.metadata.framerate);
+        framerate.val(0); //$scope.animation.metadata.framerate);
     }
 
     $scope.save = function () {

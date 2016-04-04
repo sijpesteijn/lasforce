@@ -6,7 +6,7 @@
                 <a href="#create_animation"><i class="fa fa-plus"></i></a>
             </button>
             <button ng-click="uploadIlda();"><i class="fa fa-upload"></i></button>
-            <button data-ng-click="toggleStreaming()" data-ng-disabled="!laser.isSocketConnected() || !laser.isLaserConnected()" data-ng-class="{'pushed' : laser.isStreaming() === true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
+            <button data-ng-click="cntrl.livePreview = !cntrl.livePreview" data-ng-disabled="!cntrl.laser.isSocketConnected() || !cntrl.laser.isLaserConnected()" data-ng-class="{'pushed' : cntrl.livePreview === true}" data-toggle="button"><img src="/images/laserbeam.png"></button>
         </div>
     </div>
     <div class="panel-body">

@@ -44,6 +44,9 @@ app.config(function ($routeProvider, $locationProvider) {
       .when('/show_collection', {
         templateUrl: 'pages/show_page/show_page.html'
       })
+      .when('/upload_image', {
+        templateUrl: 'pages/upload_image/upload_image_page.html'
+      })
       .otherwise({
         redirectTo: '/edit_animation'
       });
@@ -67,7 +70,7 @@ app.config(function($provide) {
       var rootScope = $injector.get('$rootScope');
       var i18next = $injector.get('$i18next');
 
-      if (exception.name === 'LasForceError') {
+      if (exception.name === 'LaasForceError') {
         var message = i18next('ERROR.' + exception.errorCode);
           var error = exception.error;
           var details = error.data;

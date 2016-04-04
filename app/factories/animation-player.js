@@ -9,7 +9,8 @@ app.factory('animationPlayer', function($interval, paperWrapper) {
     };
 
     var getFrameTime = function() {
-        var delay = (1 / animation.metadata.framerate) * animation.frames.length * 100;
+      // animation.metadata.framerate
+        var delay = animation.frames.length * 10;
         return delay;
     };
 

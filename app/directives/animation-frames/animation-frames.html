@@ -12,7 +12,7 @@
             <span id="frame_{{frame.id}}" class="input-group-addon"><i class="fa fa-edit"
                                                                        data-ng-click="frame.edit = true"></i></span>
 
-            <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.name"
+            <input type="text" class="form-control" data-ng-show="frame.edit" data-ng-model="frame.frame_metadata.name"
                    data-ng-keyup="$event.keyCode == 13 && (frame.edit = false)">
             <span class="clickable form-control" data-ng-click="setCurrentFrame(frame.id);" data-ng-show="!frame.edit"
                   data-ng-class="{'selectedFrame': frame.id == player.getCurrentFrameId() }">{{ frame.name }}</span>
